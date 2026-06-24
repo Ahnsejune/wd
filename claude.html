@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>웹디자인기능사 필기 요점 · 색으로 외우는 학습실</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* 중립 베이스 */
+    --ink:#1a1c22;
+    --ink-2:#4a4e5a;
+    --ink-3:#838897;
+    --paper:#eef0f4;
+    --card:#ffffff;
+    --line:#e2e5ec;
+    --line-soft:#eceef3;
+    /* 출제율(중요도) 색 스케일 — 색채 시험 테마 */
+    --r95:#e0263c; /* 90%+  필수 */
+    --r80:#ef7d1a; /* 80-89 핵심 */
+    --r70:#e0a500; /* 70-79 중요 */
+    --r60:#16a085; /* 60-69 보통 */
+    --r50:#3f7ee6; /* ~59   참고 */
+    --r00:#9aa0ad; /* 미표기 */
+    --gold:#caa53d;
+    --shadow:0 1px 2px rgba(20,24,40,.05),0 8px 24px -12px rgba(20,24,40,.18);
+    --shadow-lg:0 4px 12px rgba(20,24,40,.08),0 24px 48px -20px rgba(20,24,40,.28);
+    --radius:14px;
+    --fs-base:15.5px;
+    --font:'IBM Plex Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;
+    --mono:'IBM Plex Mono','IBM Plex Sans KR',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+  body{
+    font-family:var(--font);font-size:var(--fs-base);line-height:1.6;color:var(--ink);
+    background:var(--paper);-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 1px 1px, rgba(20,24,40,.035) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+  /* ===== 스펙트럼 띠 (가시광선 시그니처) ===== */
+  .spectrum{height:5px;width:100%;
+    background:linear-gradient(90deg,#5b2a86 0%,#3f51b5 14%,#2196f3 28%,#00bcd4 40%,#3ec46d 52%,#cddc39 64%,#ffeb3b 74%,#ff9800 86%,#e53935 100%);
+  }
+
+  /* ===== 헤더 ===== */
+  header.top{position:sticky;top:0;z-index:40;background:rgba(238,240,244,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .top-inner{max-width:1080px;margin:0 auto;padding:14px 20px 12px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .brand .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+  .brand h1{font-size:19px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+  .brand h1 em{font-style:normal;color:var(--r95)}
+  .progress-wrap{margin-left:auto;display:flex;align-items:center;gap:12px;min-width:200px}
+  .ring{position:relative;width:46px;height:46px;flex:none}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:12px;color:var(--ink)}
+  .progress-meta{font-size:12.5px;color:var(--ink-2);line-height:1.3}
+  .progress-meta b{color:var(--ink);font-weight:600}
+  .search{position:relative;flex:1 1 220px;min-width:180px;max-width:340px}
+  .search input{width:100%;padding:10px 14px 10px 38px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-family:var(--font);font-size:14px;color:var(--ink);box-shadow:var(--shadow)}
+  .search input:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 3px rgba(26,28,34,.08)}
+  .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+  .search .clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:none;background:none;color:var(--ink-3);cursor:pointer;font-size:18px;line-height:1;padding:4px;display:none}
+
+  /* ===== 컨트롤 바 ===== */
+  .controls{max-width:1080px;margin:0 auto;padding:16px 20px 0;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--card);padding:5px;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .tab{border:none;background:none;font-family:var(--font);font-size:13.5px;font-weight:600;color:var(--ink-2);padding:8px 14px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s,color .15s}
+  .tab .dot{width:9px;height:9px;border-radius:50%;background:var(--ink-3)}
+  .tab[data-p="p1"] .dot{background:var(--r95)}
+  .tab[data-p="p2"] .dot{background:var(--r50)}
+  .tab[data-p="p3"] .dot{background:var(--r60)}
+  .tab.active{background:var(--ink);color:#fff}
+  .tab.active .dot{background:#fff!important}
+  .tab .mini{font-family:var(--mono);font-size:11px;opacity:.7;font-weight:500}
+
+  .seg{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .seg-group{display:flex;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+  .seg-btn{border:none;background:none;font-family:var(--font);font-size:12.5px;font-weight:500;color:var(--ink-2);padding:8px 12px;cursor:pointer;border-right:1px solid var(--line-soft)}
+  .seg-btn:last-child{border-right:none}
+  .seg-btn.on{background:var(--ink);color:#fff}
+
+  /* ===== 범례 ===== */
+  .legend{max-width:1080px;margin:14px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;font-size:11.5px;color:var(--ink-3)}
+  .legend .lg{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);letter-spacing:.02em}
+  .legend .chip{width:11px;height:11px;border-radius:3px}
+
+  /* ===== 메인 ===== */
+  main{max-width:1080px;margin:0 auto;padding:18px 20px 80px}
+  .part-head{display:flex;align-items:baseline;gap:12px;margin:8px 2px 16px;flex-wrap:wrap}
+  .part-head .lbl{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+  .part-head .nm{font-size:24px;font-weight:700;letter-spacing:-.02em}
+  .part-head .cnt{font-family:var(--mono);font-size:12.5px;color:var(--ink-3);margin-left:auto}
+
+  .grid{display:grid;gap:12px}
+
+  /* ===== 섹션 카드 ===== */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .18s,border-color .18s}
+  .card.open{box-shadow:var(--shadow-lg)}
+  .card.done{border-color:#cfe9df}
+  .chead{display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;user-select:none;position:relative}
+  .chead:hover{background:#fafbfc}
+  /* 컬러칩 = 출제율 */
+  .chip-rate{flex:none;width:54px;height:54px;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;position:relative;overflow:hidden}
+  .chip-rate .v{font-family:var(--mono);font-weight:600;font-size:17px;line-height:1}
+  .chip-rate .u{font-size:9px;opacity:.85;margin-top:1px;letter-spacing:.04em}
+  .chip-rate.na{background:repeating-linear-gradient(45deg,#cdd2db,#cdd2db 5px,#d8dce3 5px,#d8dce3 10px);color:#6b7280}
+  .chip-rate.na .v{font-size:13px}
+  .ctitle{flex:1 1 auto;min-width:0}
+  .ctitle .num{font-family:var(--mono);font-size:12px;color:var(--ink-3);font-weight:500}
+  .ctitle h3{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.35;display:inline}
+  .ctitle .bar{margin-top:7px;height:5px;border-radius:3px;background:var(--line-soft);overflow:hidden;max-width:240px}
+  .ctitle .bar i{display:block;height:100%;border-radius:3px}
+  .cacts{flex:none;display:flex;align-items:center;gap:4px}
+  .iconbtn{width:34px;height:34px;border:none;background:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-3);transition:background .15s,color .15s}
+  .iconbtn:hover{background:var(--line-soft);color:var(--ink)}
+  .iconbtn.fav.on{color:var(--gold)}
+  .iconbtn.chk.on{color:#16a085}
+  .caret{transition:transform .2s;color:var(--ink-3)}
+  .card.open .caret{transform:rotate(180deg)}
+  .done-flag{position:absolute;top:0;left:0;width:0;height:0;border-top:26px solid #16a085;border-right:26px solid transparent}
+  .card:not(.done) .done-flag{display:none}
+
+  /* 본문 */
+  .cbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .26s ease}
+  .card.open .cbody{grid-template-rows:1fr}
+  .cbody-in{overflow:hidden}
+  .cbody-pad{padding:4px 18px 20px;border-top:1px solid var(--line-soft)}
+  .group{margin-top:16px}
+  .group:first-child{margin-top:12px}
+  .group .gh{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:.01em;display:flex;align-items:center;gap:8px;margin-bottom:9px}
+  .group .gh::before{content:"";width:14px;height:2px;border-radius:2px;background:var(--accent,var(--ink-3));flex:none}
+  .group ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .group li{position:relative;padding-left:18px;font-size:14px;line-height:1.62;color:var(--ink-2)}
+  .group li::before{content:"";position:absolute;left:3px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--accent,var(--ink-3));opacity:.55}
+  .group li.sub{padding-left:30px;color:var(--ink-3);font-size:13.5px}
+  .group li.sub::before{display:none}
+  mark{background:#fff2a8;color:inherit;padding:0 2px;border-radius:3px}
+
+  /* ===== 요약본 행 ===== */
+  .brief{display:grid;gap:8px}
+  .brow{background:var(--card);border:1px solid var(--line);border-radius:11px;box-shadow:var(--shadow);display:flex;align-items:center;gap:13px;padding:11px 14px;transition:border-color .15s}
+  .brow.done{border-color:#cfe9df;background:#fbfdfc}
+  .brow .chip-s{flex:none;width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--mono);font-weight:600;font-size:13px}
+  .brow .chip-s.na{background:repeating-linear-gradient(45deg,#cdd2db,#cdd2db 5px,#d8dce3 5px,#d8dce3 10px);color:#6b7280;font-size:10px}
+  .brow .bmain{flex:1 1 auto;min-width:0}
+  .brow .bt{font-size:14px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+  .brow .bt .bn{font-family:var(--mono);font-size:11px;color:var(--ink-3);font-weight:500;margin-right:6px}
+  .brow .bs{font-size:12.7px;color:var(--ink-2);line-height:1.5;margin-top:3px}
+  .brow .bacts{flex:none;display:flex;gap:2px}
+  .brief-tip{font-size:12px;color:var(--ink-3);margin:0 2px 12px;display:flex;align-items:center;gap:7px}
+  .brief-tip svg{flex:none;color:var(--gold)}
+
+  /* 인쇄 */
+  @media print{
+    .top,.controls,.legend,footer,.toast,.bacts,.brief-tip{display:none!important}
+    body{background:#fff;background-image:none}
+    .spectrum{height:3px}
+    .brow,.card{box-shadow:none;break-inside:avoid}
+    .brief{gap:5px}
+    main{padding-top:8px}
+  }
+
+  /* 빈 상태 */
+  .empty{text-align:center;padding:70px 20px;color:var(--ink-3)}
+  .empty .big{font-size:40px;margin-bottom:10px}
+  .empty h4{font-size:16px;color:var(--ink-2);font-weight:600;margin-bottom:6px}
+
+  /* 푸터 */
+  footer{max-width:1080px;margin:0 auto;padding:30px 20px 50px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);line-height:1.7}
+  footer b{color:var(--ink-2);font-weight:600}
+  .reset-link{background:none;border:none;color:var(--r50);font-family:var(--font);font-size:12px;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px}
+
+  /* 토스트 */
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:10px;font-size:13.5px;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:680px){
+    :root{--fs-base:15px}
+    .top-inner{padding:12px 16px}
+    .brand h1{font-size:17px;white-space:normal}
+    .progress-wrap{margin-left:0;order:3;width:100%;min-width:0}
+    .search{order:4;max-width:none;flex-basis:100%}
+    .controls{padding:14px 16px 0}
+    .seg{margin-left:0;width:100%}
+    .seg-group{flex:1}
+    .seg-btn{flex:1;text-align:center;padding:8px 6px}
+    .legend{padding:0 16px}
+    main{padding:16px 16px 70px}
+    .part-head .nm{font-size:21px}
+    .chip-rate{width:46px;height:46px}
+    .chip-rate .v{font-size:15px}
+    .ctitle h3{font-size:15px}
+    .ctitle .bar{max-width:none}
+    .cacts{flex-direction:row}
+    .chead{gap:10px;padding:12px 12px}
+    .cbody-pad{padding:4px 14px 18px}
+  }
+</style>
+</head>
+<body>
+  <div class="spectrum" aria-hidden="true"></div>
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">
+        <span class="kicker">웹디자인기능사 · 필기 요점정리</span>
+        <h1>색으로 외우는 <em>학습실</em></h1>
+      </div>
+      <div class="progress-wrap" title="전체 학습 진도">
+        <div class="ring">
+          <svg width="46" height="46" viewBox="0 0 46 46">
+            <circle cx="23" cy="23" r="19" fill="none" stroke="#e2e5ec" stroke-width="5"/>
+            <circle id="ringFg" cx="23" cy="23" r="19" fill="none" stroke="#16a085" stroke-width="5" stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="119.4"/>
+          </svg>
+          <span class="pct" id="ringPct">0%</span>
+        </div>
+        <div class="progress-meta">
+          <b id="doneCount">0</b> / <span id="totalCount">0</span> 완료<br>
+          <span id="favLine">즐겨찾기 0개</span>
+        </div>
+      </div>
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="search" type="search" placeholder="키워드 검색 (예: 먼셀, JPEG, 보색대비)" autocomplete="off" aria-label="키워드 검색">
+        <button class="clear" id="clearSearch" aria-label="검색 지우기">&times;</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="seg">
+      <div class="seg-group" id="viewGroup" role="group" aria-label="보기 방식">
+        <button class="seg-btn on" data-view="card">카드</button>
+        <button class="seg-btn" data-view="brief">요약본</button>
+      </div>
+      <div class="seg-group" id="sortGroup" role="group" aria-label="정렬">
+        <button class="seg-btn on" data-sort="num">번호순</button>
+        <button class="seg-btn" data-sort="rate">출제율순</button>
+      </div>
+      <div class="seg-group" id="filterGroup" role="group" aria-label="필터">
+        <button class="seg-btn on" data-filter="all">전체</button>
+        <button class="seg-btn" data-filter="todo">미완료</button>
+        <button class="seg-btn" data-filter="fav">즐겨찾기</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend" aria-label="출제율 색 범례">
+    <span class="lg"><span class="chip" style="background:var(--r95)"></span>90%+ 필수</span>
+    <span class="lg"><span class="chip" style="background:var(--r80)"></span>80~89 핵심</span>
+    <span class="lg"><span class="chip" style="background:var(--r70)"></span>70~79 중요</span>
+    <span class="lg"><span class="chip" style="background:var(--r60)"></span>60~69 보통</span>
+    <span class="lg"><span class="chip" style="background:var(--r50)"></span>~59 참고</span>
+  </div>
+
+  <main id="main"></main>
+
+  <footer>
+    <p>출제율(%)은 기출 빈도 기준의 학습 중요도 표시예요. 숫자가 높을수록 시험에 자주 나옵니다.
+    완료 체크와 즐겨찾기는 <b>이 브라우저에 자동 저장</b>됩니다.</p>
+    <p style="margin-top:8px">자료 출처: 웹디자인기능사 자격증 전문사이트 yoondle.com 요점정리 ·
+    학습 기록 초기화: <button class="reset-link" id="resetBtn">전체 진도 지우기</button></p>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+// 웹디자인기능사 필기 요점정리 데이터
+// 구조: parts[].sections[] = { n, title, rate, groups:[{h, items:[]}] }
+const STUDY_DATA = {
+  parts: [
+    {
+      id: "p1",
+      label: "Part 1",
+      name: "디자인 개론",
+      sections: [
+        { n: 1, title: "근대 디자인의 역사", rate: 75, groups: [
+          { h: "주요 사조와 인물", items: [
+            "미술공예운동 → 윌리엄 모리스: 수공예 부흥운동, 기계에 의한 대량생산 부정. 독일공작·바우하우스·아르누보에 영향",
+            "아르누보 → 헨리 반 데 벨데: 식물 모티브 곡선미, 추상형식, 화려한 색채",
+            "├ 유겐트스틸: 독일식 아르누보",
+            "└ 세세션(분리파): 오토 와그너·조셉 호프만, 클래식한 직선미·기하학적 개성",
+            "기능주의 → 루이스 설리반: 아름다움보다 기능의 편리함·만족을 우선",
+            "독일공작연맹(DWB) → 헤르만 무테지우스: 양질화·규격화·객관적·합리적 미술 주장, 바우하우스 설립에 큰 영향",
+            "큐비즘(입체주의) → 마티스·브라크·피카소: 기하학 형태로 환원, 이차원적 면의 분할로 재구성",
+            "구성주의: 급진적 성격, 러시아(소련)에서 일어남",
+            "데 스틸(신조형주의): 일체화·기하학적 형태, 삼원색과 흑·백·회색만 사용",
+            "퓨리즘(순수주의): 입체주의 계승, 불필요한 장식 배격, 간결·정확한 조형미(실생활 도구)",
+            "바우하우스: 윌터 그로피우스가 설립한 종합조형학교, 기능적·합목적적 새로운 미 추구",
+            "아르데코(반 아르누보): '장식미술' 의미, 기능적·고전적 직선미, 낙관적·향락적 분위기",
+          ]},
+        ]},
+        { n: 2, title: "현대 디자인의 역사", rate: 80, groups: [
+          { h: "주요 사조", items: [
+            "다다이즘: 허무주의 표방, 기존 예술체계 부정",
+            "초현실주의: 다다이즘의 영향, 무의식의 발현 / 기법 - 프로타주·데칼코마니·콜라주",
+            "추상 표현주의 → 잭슨 폴락: 칸딘스키(뜨거운 추상), 몬드리안(차가운 추상)",
+            "포스트 모더니즘: 멤피스(이탈리아의 디자인 단체)",
+            "팝아트: 미국 뉴욕 중심, 상업적·반 미술적 사고방식",
+            "옵 아트: '시각적 미술'(옵티컬 아트의 약칭), 팝 아트에 대항, 다이나믹한 분위기",
+            "미니멀 아트: 최소한의 예술, 극단적 간결성·기계적 엄밀성",
+          ]},
+          { h: "참고", items: [
+            "한국: 1970년대 산업디자인의 성장기",
+            "스칸디나비아: 실내생활과 관련된 디자인 발달",
+            "런던박람회: 세계 최초의 산업 대 박람회",
+          ]},
+        ]},
+        { n: 3, title: "디자인 일반", rate: 70, groups: [
+          { h: "의미·조건·과정", items: [
+            "의미: 의장·도안·계획·설계. 라틴어 'Designare'에서 유래. 계획을 목적에 맞게 설계·발전시키는 과정",
+            "4대 조건: 합목적성·경제성·심미성·독창성 (+ 질서성)",
+            "과정: 발의 > 확인 > 조사 > 분석 > 종합 > 평가 > 개발 > 전달",
+          ]},
+          { h: "디자인의 요소", items: [
+            "① 개념요소: 눈으로 볼 수 없으나 존재한다고 지각 - 점(위치), 선(속도·방향·강약), 면(입체의 한계), 입체(면의 집합)",
+            "② 시각요소: 실제로 존재·지각 가능 - 형(2차원)·형태(3차원)·크기·색채·질감·빛과 명암",
+            "③ 상관요소: 디자인 요소들의 결합 / ④ 실제요소",
+          ]},
+          { h: "참고 - 형태와 면", items: [
+            "이념적 형태(순수·추상): 점·선·면, 지각 불가능",
+            "현실적 형태: 자연적 형태·인위적 형태(지각 가능)",
+            "유기적인 면: 자연적·활발하고 자유로운 느낌 / 무기적인 면: 기계적·기하학적인 면",
+          ]},
+        ]},
+        { n: 4, title: "디자인의 원리", rate: 75, groups: [
+          { h: "7대 원리", items: [
+            "균형(Balance): 시각적 안정감. 대칭(선·방사·이동·확대) / 비대칭",
+            "비례(Proportion): 전체와 부분의 상대 관계. 황금비례 1:1.6184, 르 코르뷔지에의 '모듈러'",
+            "율동(Rhythm): 규칙적 반복·교차의 움직임. 반복과 교차 / 점이(점층, 색채의 점이=그라데이션) / 방사",
+            "동세(Movement): 방향·각도를 강조·과장하여 움직임 표현",
+            "통일(Unity)과 변화(Variety): 통일=하나의 규칙으로 단일화 / 변화=통일의 일부에 변화",
+            "강조(Accent)와 대조(Contrast): 강조=단조로움 회피 위해 일부 요소를 다르게 / 대조=서로 다른 영역의 대립",
+            "조화(Harmony): 통일·변화·균형감의 안정적 결합. 유사조화(친근·부드러움) / 대비조화(극적효과·긴장감)",
+          ]},
+        ]},
+        { n: 5, title: "디자인과 마케팅", rate: 60, groups: [
+          { h: "마케팅 기본", items: [
+            "조건: 고객의 필요에 맞춤, 제품중심 → 소비자중심, 이윤 창출",
+            "구성요소 4P: Product(제품)·Price(가격)·Place(유통)·Promotion(촉진)",
+            "마케팅믹스: 각 요소를 적절히 조합해 최대 효과",
+          ]},
+          { h: "제품 수명주기", items: [
+            "도입기: 수익보다 홍보 중점, 경쟁자 없으므로 고가정책",
+            "성장기: 매출·이윤 증가, 경쟁 시작",
+            "성숙기: 성장률 둔화, 이익 감소, 경쟁 극심",
+            "쇠퇴기: 신상품 개발에 주력",
+          ]},
+          { h: "소비자·시장", items: [
+            "소비자 구매과정 AIDMA: Attention(주의)→Interest(흥미)→Desire(욕구)→Memory(기억)→Action(행동)",
+            "시장 세분화 기준: 지리적·인구통계학적·심리적·행동적 변수",
+          ]},
+        ]},
+        { n: 6, title: "디자인의 발상", rate: 55, groups: [
+          { h: "발상 유형", items: [
+            "모방디자인: 형태·기능을 그대로 모방, 디자인 활동의 기초",
+            "수정디자인: 형태 일부만 수정 (우리나라 대부분)",
+            "적응디자인: 새로운 용도·형태 창조 (개도국이 취해야 할 방향)",
+            "혁신디자인: 새로운 용도·형태·기능 창조 (선진국이 취해야 할 방향)",
+          ]},
+          { h: "참고", items: [
+            "브레인스토밍: 10명 이내, 자유발언 중 새 아이디어 (오즈번 고안)",
+            "시네틱스: 2개 이상 결합, 유사한 것을 참고로 개선책을 찾음",
+            "문제 해결 과정: 계획 > 조사 > 분석 > 종합 > 평가",
+            "매슬로우 욕망 모델: 생리적 > 생활보존 > 사회적 > 존경취득 > 자아실현",
+          ]},
+        ]},
+        { n: 7, title: "편집디자인", rate: 60, groups: [
+          { h: "형태별 분류", items: [
+            "시트형태: 안내장·명함·DM 등 낱장 형식",
+            "스프레드 형태: 신문·카탈로그·팜플렛 등 펼치고 접는 형식",
+            "서적 형태: 잡지·매뉴얼·브로슈어·서적 등 제본 형식",
+          ]},
+          { h: "구성요소·글꼴", items: [
+            "구성요소: 레이아웃·타이포그래피·글꼴",
+            "명조체(바탕체): 본문 기본서체, 여성적·섬세·우아 (세리프체-글자 끝 돌기 있음)",
+            "고딕체(돋움체): 남성적·힘참 (산세리프체-돌기 없음)",
+          ]},
+        ]},
+        { n: 8, title: "광고매체", rate: 50, groups: [
+          { h: "4대 매체: 신문·잡지·TV·라디오", items: [
+            "신문: 신뢰도 높고 넓은 독자층, 주목율 높음 / 단점 - 짧은 수명, 독자 선택 불가",
+            "잡지: 긴 생명력·높은 회람율·컬러 인쇄 효과·특정 대상 선정 / 단점 - 빠른 효과 어려움",
+            "TV: 영향력 크고 반복 효과·시간대 선별 / 단점 - 짧은 수명, 높은 비용, 시청률 영향",
+            "라디오: 신속 전달·장소 제한 없음·반복 광고 / 단점 - 다양성 제약",
+            "DM: 우편 직접광고. 고객 선정 발송으로 낭비 없음·친밀감 / 종류 - 폴더·노벨티·블로터",
+          ]},
+          { h: "옥외광고", items: [
+            "간판: 점두간판(처마 끝)·입간판(옥외나 점두)·옥상간판·야립간판(산·들)",
+          ]},
+        ]},
+        { n: 9, title: "실내디자인의 요소", rate: 55, groups: [
+          { h: "기본요소", items: [
+            "바닥(Floor): 수평요소, 접촉빈도 가장 높음, 추위·습기 차단",
+            "천장(Ceiling): 실내분위기 조절 수평요소, 소리·빛·열 조절",
+            "벽(Wall): 형태·크기·규모 결정 수직요소, 분위기 형성에 가장 큰 영향",
+            "기둥과 보: 기둥=동선 차단 수직요소 / 보=천장 부속 수평요소",
+            "개구부: 창(Window)·문(Door)",
+          ]},
+          { h: "조명", items: [
+            "직접조명 90~100% / 간접조명(천장 반사·눈부심 없음, 침실·병실 적합) / 반직접·반간접 60~90% / 전반확산(직접+간접)",
+            "부착방법: 매입형(다운라이트)·직부형·벽부형·팬던트형·이동형",
+            "실내디자인 과정: 기획 > 설계 > 시공 > 평가",
+          ]},
+        ]},
+        { n: 10, title: "색의 기본원리", rate: 65, groups: [
+          { h: "빛의 파장", items: [
+            "적외선: 780nm 이상, 파장이 제일 길다",
+            "가시광선: 380~780nm",
+            "자외선: 380nm 이하, 파장이 제일 짧음",
+          ]},
+        ]},
+        { n: 11, title: "색채 자극과 반응", rate: 65, groups: [
+          { h: "주요 현상", items: [
+            "색순응: 조명광·물체색을 오래 보면 색 지각이 약해지는 현상",
+            "조건등색: 서로 다른 두 색이 특정 광원 아래에서 같은 색으로 보이는 현상",
+          ]},
+        ]},
+        { n: 12, title: "색의 지각", rate: 75, groups: [
+          { h: "지각 현상", items: [
+            "푸르킨예 현상: 어두워지면 장파장(적색)이 먼저 안 보이고 단파장(보라)이 끝까지 보임. 낮의 빨강→밤엔 검게, 낮의 파랑→밤엔 밝은 회색",
+            "항상성: 주변 환경이 달라도 색의 본래 모습을 그대로 느낌",
+            "베졸드-브뤼케 현상",
+            "애브니 효과: 채도를 높이면 같은 파장이라도 색상이 다르게 보임",
+            "면적효과: 동일 색이라도 면적이 큰 색이 밝고 선명하게 보임",
+            "소면적 3색각 이상: 빨강에 가까운 색이 빨간색으로 보임",
+            "메카로 효과: 보색 잔상이 이동하는 효과",
+          ]},
+        ]},
+        { n: 13, title: "색채 지각설", rate: 70, groups: [
+          { h: "두 가지 학설", items: [
+            "영-헬름홀츠 3원색설: 빨·녹·파의 3원색설, 색광혼합(가산혼합)과 일치. 세포 중 하나라도 잘못되면 색맹·색각이상",
+            "헤링의 반대색설: 빨·노·초·파·검·흰 물질이 존재한다고 가정. 보색 잔상·동시대비 현상을 밝히는 중요 이론",
+          ]},
+        ]},
+        { n: 14, title: "색의 분류 및 색의 3속성", rate: 85, groups: [
+          { h: "색의 분류", items: [
+            "무채색: 채도 없음, 명도만으로 구별",
+            "유채색: 색상 있음 (색상·명도·채도 모두 가짐)",
+          ]},
+          { h: "색의 3속성", items: [
+            "색상(Hue): 색채만을 구별. 근거리=유사색 / 반대편=보색 / 거리가 먼 색=반대색",
+            "명도(Value): 밝기. 사람 눈이 가장 민감. 흑색 0 ~ 백색 10, 총 11단계",
+            "채도(Chroma): 색의 순도·포화도·선명도. 순색=채도가 가장 높은 색",
+            "청색: 명청색(순색+흰색)·암청색(순색+검정) / 탁색: 순색·청색에 회색 혼합 / 채도 1~14, 14단계",
+          ]},
+        ]},
+        { n: 15, title: "색의 혼합", rate: 80, groups: [
+          { h: "혼합 방식", items: [
+            "가산혼합(색광혼합): 혼합될수록 백색·명도 높아짐 (무대조명·모니터·TV). Red+Blue+Green=흰색(W)",
+            "감산혼합(색료혼합): 혼합될수록 명도·채도 낮아짐. Magenta+Cyan+Yellow=검정(K)",
+            "중간혼합 - 병치혼합: 명도·채도 평균값, 가산혼합에 속함 (점묘화·직물·인쇄·모자이크)",
+            "중간혼합 - 회전혼합: 두 색 중간 밝기로 혼합 (색팽이·바람개비)",
+          ]},
+        ]},
+        { n: 16, title: "현색계", rate: null, groups: [
+          { h: "표색계 분류", items: [
+            "표색계: 색을 표시하는 것",
+            "현색계: 색채를 표시하는 표색계. 대표 - 먼셀·오스트발트 (우리나라는 먼셀 표준 채택)",
+            "혼색계: 색광을 표시하는 표색계. 대표 - CIE(국제조명위원회) 표준",
+          ]},
+        ]},
+        { n: 17, title: "색명 체계", rate: 65, groups: [
+          { h: "색명의 종류", items: [
+            "기본색명: KS 규정, 기본 10색 (교육인적자원부는 10색 추가 20색)",
+            "관용색명: 습관적 색이름(지명·식물·동물 등 고유 이름). 정확한 구별 어려움",
+            "일반색명(계통색명): 기본색명에 형용사 수식어. 관용색명 단점 보완, 감성 전달 쉬움, 3속성에 따라 분류",
+          ]},
+        ]},
+        { n: 18, title: "먼셀의 표색계", rate: 75, groups: [
+          { h: "먼셀 표색계", items: [
+            "색상: 빨·노·녹·파·보라 + 중간색(주황·연두·청록·남색·자주) = 기본 10색. KS 10색상환, 교육부 20색상환",
+            "명도: 흰색 위, 검정 아래, 11단계. 검정 0 ~ 흰색 10, 숫자 앞에 N",
+            "채도: 무채색 축 0, 가장 높은 색 14. 수평방향으로 번호 커짐",
+            "표기법: HV/C (색상 명도/채도)",
+            "색 입체: 수평단면=같은 명도(가장자리로 갈수록 채도↑) / 수직단면=등색상면(보색). 위로 명도↑, 바깥으로 채도↑, 가장 바깥=순색",
+          ]},
+        ]},
+        { n: 19, title: "오스트발트의 표색계", rate: 70, groups: [
+          { h: "오스트발트 표색계", items: [
+            "무채색 W(흰)+B(검)=100% / 유채색 W+B+C(순색)=100% 로 언제나 일정",
+            "등백색 계열: 흰색 혼합량이 같은 계열",
+            "등흑백 계열: 검정 혼합량이 같은 계열",
+            "등순색 계열: 순색 혼합량이 같은 계열",
+            "명도 8단계로 구분, 가장 바깥쪽에 순색 위치",
+          ]},
+        ]},
+        { n: 20, title: "색의 대비", rate: 95, groups: [
+          { h: "동시대비", items: [
+            "색상대비: 두 색을 동시에 볼 때 색상 차이가 크게 느껴짐 (파란 옷 위 보라 스카프→자주색)",
+            "명도대비: 밝고 어두움·무게감 변화. 밝은 색 가까워, 어두운 색 멀게",
+            "채도대비: 채도 다른 두 색의 영향으로 채도 차이가 남",
+          ]},
+          { h: "기타 대비", items: [
+            "보색대비: 빨간 장미가 초록 배경에서 선명. 두 색상이 더 뚜렷",
+            "면적대비: 면적 클수록 명도·채도 높아 보임",
+            "한난대비: 중성색 옆 한색·난색에 따라 따뜻/차갑게 느껴짐",
+            "연변대비: 두 색의 경계 언저리가 더 강한 대비",
+            "계시대비(계속·연속대비): 먼저 본 색의 영향으로 나중 색이 다르게 보임, 잔상과 관계 (빨강→노랑이 황록색으로)",
+          ]},
+        ]},
+        { n: 21, title: "색의 지각 (심화)", rate: 90, groups: [
+          { h: "지각 현상", items: [
+            "동화현상(폰-베졸트 효과): 특정색이 인접색 영향으로 인접색에 가까워 보임",
+            "잔상: 정의 잔상(양의, 오래 지속) / 부의 잔상(음의, 병원 수술실 청록색 이유)",
+            "명시도(가시성): 인접색 영향으로 잘 보이는 것. 배경과의 명도 차에 가장 민감 (교통표지판 색상 결정 시 고려)",
+            "주목성: 시선 유도. 강한 고채도 색+중성색이 가장 효과적",
+            "진출색·후퇴색: 진출=고명도·난색 / 후퇴=저명도·저채도·한색 (빨간 자동차가 크게 보이고 안전도↑)",
+            "팽창색·수축색: 팽창=난색·고명도·고채도 / 수축=한색·저명도·저채도",
+            "연색성: 조명이 물체색에 영향을 주어 색이 다르게 인식됨",
+          ]},
+        ]},
+        { n: 22, title: "게슈탈트의 법칙(군화의 법칙)", rate: 75, groups: [
+          { h: "4대 원리", items: [
+            "근접의 원리: 가까이 있는 것들이 하나의 덩어리로 인식",
+            "유사의 원리: 비슷한 성질의 요소는 떨어져 있어도 동일 집단으로 느껴짐",
+            "연속의 원리: 배열·진행방향이 비슷한 것끼리 하나로 보임",
+            "폐쇄의 원리: 닫혀있지 않은 도형이 심리적으로 닫혀 보임",
+          ]},
+        ]},
+        { n: 23, title: "착시효과", rate: 70, groups: [
+          { h: "착시 유형", items: [
+            "반전(명도): 한 도형이 두 종류 이상으로 보임 (루빈의 컵)",
+            "각도·방향의 착시 / 면적·크기 대비 착시 (주변 환경에 따라 크기 다름)",
+            "속도의 착시: 차 안에서 글씨가 짧아 보임 → 도로에 세로로 길게 표시",
+            "길이(유화착시) / 상방거리 과대착시(위방향)",
+            "수평·수직 착시: 수직선이 수평선보다 길어 보임",
+          ]},
+        ]},
+        { n: 24, title: "색의 감정적인 지각", rate: 70, groups: [
+          { h: "감정 효과", items: [
+            "온도감 - 난색(따뜻, 고명도·고채도) / 한색(차가움, 파란색·저명도) / 중성색(연두·녹색·보라·자주)",
+            "중량감(명도): 권위 복장=저명도 / 산업체 운반도구=노랑·주황으로 무게감↓·주의 표시",
+            "경연감(명도·채도): 딱딱하거나 부드럽게 느껴지는 효과",
+            "강약감(채도): 고채도=강한 느낌 / 저채도=약한 느낌",
+            "흥분색·진정색: 흥분=난색계통(자극·강조) / 진정=한색계통(안정·편안)",
+            "장파장→따뜻한 느낌 / 단파장→차가운 느낌",
+          ]},
+        ]},
+        { n: 25, title: "색채 조화의 원리", rate: 65, groups: [
+          { h: "조화 이론", items: [
+            "셰브럴: 색채조화는 유사성·대조에서 이뤄짐. 등간격 3색 조화",
+            "져드의 4원리: 질서·친근성·유사성·명료성(비모호성)",
+            "문-스펜서: 동일·유사·대비조화='조화', 애매한 배색='부조화'. 작은 면적 강한 색+큰 면적 약한 색=어울림. 미도 M=O/C, 오메가 공간",
+          ]},
+        ]},
+        { n: 26, title: "색채 배색", rate: 60, groups: [
+          { h: "배색 종류", items: [
+            "우아한 배색: 보라색이 들어감",
+            "개성적 배색: 대조적인 느낌",
+            "지성적 배색: 회색 계통, 난색+한색 함께",
+            "온화한 배색: 빨간색 계통 X, 중성색이 적합",
+            "명쾌한 배색: 고명도끼리 선택",
+          ]},
+        ]},
+      ],
+    },
+    {
+      id: "p2",
+      label: "Part 2",
+      name: "인터넷 일반",
+      sections: [
+        { n: 1, title: "인터넷 일반", rate: 50, groups: [
+          { h: "IP 주소", items: [
+            "현재 IPv4(32bit), 차세대 IPv6(128bit)",
+            "IPv4: 8bit씩 4개 옥텟(32bit), 각 자리 0~255, 네트워크부(N)+호스트부(H)",
+            "클래스: 첫 옥텟으로 구분. A·B·C(일반 구성용), D(멀티캐스트), E(실험용). 0·127은 특수용도 예약",
+            "사설 IP 범위: A클래스 1개·B클래스 16개·C클래스 256개",
+            "IPv6: IPv4 고갈·보안 해결, 계층적 구조, 16bit×8(128bit), 16진수+콜론 표시",
+          ]},
+          { h: "관리 기구", items: [
+            "클래스 범위: A 1~126 / B 128~191 / C 192~223 / D 224~239(멀티캐스트) / E 240~247(실험용)",
+            "ICANN: 국제인터넷 주소관리기구, IANA 상위, 도메인·IP 할당(비영리 통합)",
+            "IANA: 인터넷주소 배정국, ICANN 산하, 전 세계 주소체계 관리",
+            "APNIC: 아시아·태평양 인터넷 관리 / NIDA(한국인터넷진흥원): 국내 IP 관리 / ARPANET: 인터넷 시초, 군사목적",
+          ]},
+        ]},
+        { n: 2, title: "호스트 이름과 도메인", rate: 50, groups: [
+          { h: "도메인 단계", items: [
+            "최상위(TLD) - gTLD: ICANN의 IANA 관리 (com·net·org·edu·int·gov)",
+            "최상위(TLD) - ccTLD: 각국 NIC 관리, 국가명 (kr·jp·us·uk·ca·fr·de·kp)",
+            "차상위(SLD): co(영리)·go(정부)·ac(교육)·nm/ne(네트워크)·or(비영리)·re(연구소)",
+          ]},
+          { h: "도메인 작성규칙", items: [
+            "대소문자 구별 없이 영문자·숫자·하이픈(-) 조합",
+            "쉼표(,)·밑줄(_) 사용 불가",
+            "개인 3문자·그 외 2문자부터, 최대 63문자",
+            "하이픈(-)으로 끝날 수 없음",
+          ]},
+        ]},
+        { n: 3, title: "인터넷 서비스", rate: 55, groups: [
+          { h: "주요 서비스", items: [
+            "아치(Archie): 익명 파일 전송 서버 대상 파일 검색",
+            "메일링 리스트: 특정 주제 관심자끼리 전자우편 주고받음",
+            "후이즈(Whois): 각 기관의 주요 운영정보 조회",
+            "고퍼(Gopher): 정보를 메뉴 형태로 구조화한 정보 제공",
+            "뉴스: 유즈넷, 프로토콜 NNTP",
+            "텔넷: 원격 조정(계정 필요), 포트번호 23",
+            "익명 파일전송(Anonymous): 계정 없어도 가능",
+            "전자우편: 송신 SMTP / 수신 POP·IMAP. Cc(참조)·Bcc(숨은참조)·Forward(전송)·동보메일(여러 수신자)",
+          ]},
+          { h: "참고", items: [
+            "DNS: 도메인 이름 서비스 / bps: 1초당 전달 비트 수",
+            "웹브라우저: 모자이크(최초)·넷스케이프·핫자바·익스플로러·링스(텍스트 기반)·오페라",
+            "플러그인: 브라우저가 처리 못하는 동영상·소리 처리 보조 / 한글키워드시스템: 한글 입력 시 자동연결",
+          ]},
+        ]},
+        { n: 4, title: "오류 메세지 종류", rate: 45, groups: [
+          { h: "HTTP 오류 코드", items: [
+            "403 Forbidden: 액세스 거부 - 자료는 있으나 관리자가 접근 차단",
+            "404 Not Found: 개체를 찾을 수 없음 - 존재하지 않는 파일 요청",
+            "500 Internal Server Error: URL을 잘못 입력",
+            "503 Service Unavailable: 접속자 과다로 응답 불가",
+          ]},
+        ]},
+        { n: 5, title: "웹페이지 검색 및 특징", rate: 40, groups: [
+          { h: "검색 관련 용어", items: [
+            "시소러스: '보고'(그리스어). 어문학에서는 유의어·반의어 사전",
+            "리키지: 검색 대상인데 결과에서 빠진 정보 / 가비지: 불필요하게 검색된 정보 (둘 다 적을수록 좋음)",
+            "스패밍: 동일 키워드 반복으로 빈도수를 높여 검색 우선순위 올림",
+          ]},
+          { h: "검색엔진의 종류", items: [
+            "로봇에이전트형: robot·spider·crawler·web worm, DB 매우 큼·자료 방대",
+            "디렉터리형(주제별): 카테고리 체계적 링크, DB가 적은 편",
+            "하이브리드형: 키워드형+카테고리형 모두 (대부분의 검색엔진)",
+            "메타형(지능형): 자체 DB 없으나 정보검색 지원",
+          ]},
+        ]},
+        { n: 6, title: "검색엔진의 연산자", rate: 60, groups: [
+          { h: "연산자 종류", items: [
+            "부울(논리) 연산자: 우선순위 AND > NOT > OR. AND(모두 포함)·NOT(제외)·OR(하나만)",
+            "인접 연산자: NEAR(순서 무시) / ADJ·FOLLOWED BY(순서 고려)",
+            "구문검색: 연속한 둘 이상 키워드를 하나로 간주",
+            "절단·와일드카드: '*'(0개 이상 여러 문자) / '?'(한 문자 대체, 스펠링 불확실 시)",
+          ]},
+        ]},
+        { n: 7, title: "국내검색엔진", rate: 50, groups: [
+          { h: "주요 엔진", items: [
+            "엠파스: 자연어 검색 + 디렉터리 검색",
+            "네이버: 자연어 검색 + 결과 내 재검색, 링크인기도 사이트 순위, 심파일",
+            "다음: 웹문서·디렉터리 검색, 동호회 카페(cafe)",
+          ]},
+        ]},
+        { n: 8, title: "국외검색엔진", rate: 50, groups: [
+          { h: "주요 엔진", items: [
+            "구글: 로봇에이전트 단어별(키워드) 검색, 다국어·텍스트 검색, 자동 AND, 뉴스그룹·고급검색",
+            "야후: 넷스케이프사 운영, 정확성↑·대소문자 구별 없음, 제목이 url 일치보다 우선",
+            "알타비스타: 키워드형, 동양권 언어 검색, 대소문자 구별·자연어 지원",
+            "라이코스: 스펠링 부정확해도 비슷한 단어 검색, 최신자료·자연어",
+            "인포시크: 무료·유료, www·usenet·FTP·Gopher 지원, 자연어 / 익사이트 / 웹 크롤러",
+          ]},
+          { h: "참고 - 정보 구축 방식", items: [
+            "매뉴얼인덱스: 정보의 질↑·양↓",
+            "에이전트인덱스: 정보 양↑·최신 갱신 빠름",
+          ]},
+        ]},
+        { n: 9, title: "HTML", rate: 70, groups: [
+          { h: "머리 부분 태그", items: [
+            "HEAD: 문서 자체 설명 / TITLE: 제목표시줄에 제목",
+            "STYLE: 배경색·글자·줄간격 제어 / LINK: 다른 문서 관계, 외부 스타일시트 삽입",
+          ]},
+          { h: "문단 구성 태그", items: [
+            "BODY: background·bgcolor·text·link·alink(클릭 시)·vlink(방문한 곳)",
+            "BR(줄바꿈)·P(문단)·HR(선)·PRE(작성 그대로, XMP는 특수문자까지)·BLOCKQUOTE(인용·여백)",
+          ]},
+          { h: "목록·문자 태그", items: [
+            "OL(순서 목록, start로 시작번호)·UL(순서 없는 목록)·LI(DISC·SQUARE·CIRCLE)",
+            "DL(정의 목록)·DT(용어 제목)·DD(정의 내용)",
+            "TT(타자체)·I/EM(이탤릭)·B/STRONG(굵게)·U(밑줄)·BLINK(깜빡임, 넷스케이프)·SMALL·BIG·SUB(아래첨자)·SUP(위첨자)·STRIKE(취소선)·Hn(1~6, 작을수록 큼)·<!--주석-->",
+          ]},
+          { h: "음악·표 태그", items: [
+            "BGSOUND: 다운로드 후 재생(익스플로러) / EMBED: 다운과 동시 재생(스트리밍)",
+            "TABLE: cellspacing(경계선 굵기)·cellpadding(여백) / TR(행)·TD(열)·TH(TD보다 굵은 글씨)",
+          ]},
+          { h: "참고", items: [
+            "종료태그 없는 태그: BR·IMG·HR / DT·DD는 종료태그 생략 가능",
+            "Link 타깃: _self(현재 창)·_parent(상위 프레임)·_blank(새 창)·_top(최상위 프레임)·_창이름",
+          ]},
+        ]},
+        { n: 10, title: "자바 스크립트(Java Script)", rate: 80, groups: [
+          { h: "기본 특징", items: [
+            "객체 지향적 스크립트형 언어, 소스를 HTML 문서 사이에 직접 기술",
+            "변수는 영문자·밑줄(_)로 시작. 예약어(function·return·var·if·for·this)는 변수명 불가",
+          ]},
+          { h: "내장 함수", items: [
+            "alert(): 정보·경고 메시지 대화상자",
+            "eval(): 문자열 수식을 계산",
+            "parseInt()·parseFloat(): 인수를 정수·실수로 변환",
+            "confirm(): [확인]·[취소] 선택 대화상자",
+          ]},
+          { h: "내장 객체", items: [
+            "Array: length·join()·concat(A)·reverse()",
+            "String(문자열 처리) / Math(E·LN2·LOG2E·PI·SQRT2) / Boolean(부울 변환)",
+          ]},
+          { h: "브라우저 내장 객체", items: [
+            "Window(브라우저 창)·Document(HTML 문서 정보)·Frame(프레임 정보)·History(히스토리 이동)·Location(URL 정보)",
+          ]},
+          { h: "연산자", items: [
+            "산술: + - * / % / 증감: ++i --i / 논리: && || ^ ! ?",
+            "문자열: +(합침) +=(추가) / 할당(대입): 오른쪽 값을 왼쪽에",
+            "비교·관계: 참(true)/거짓(false) 반환",
+            "우선순위: 괄호() 대괄호[] > 증감 > 산술 > 비교 > 논리 > 대입",
+          ]},
+        ]},
+        { n: 11, title: "웹페이지 저작 기법 및 특징", rate: 60, groups: [
+          { h: "제작 도구", items: [
+            "웹에디터: 나모웹에디터·드림위버·프론트페이지",
+            "이미지제작: 포토샵·페인트샵 프로·코렐드로우",
+            "멀티미디어 동영상: 플래시·3Ds Max·마야·프리미어",
+            "가상현실: Internet Space Builder·Lightwave 3D·Cult 3D",
+            "사운드제작: 사운드포지",
+          ]},
+        ]},
+        { n: 12, title: "웹 프로그래밍 언어의 이용", rate: 55, groups: [
+          { h: "주요 언어", items: [
+            "DHTML: 동적 웹페이지, 객체지향·스타일시트·동적 글꼴·다운로드 폰트·레이어",
+            "XML: SGML 단점 극복(W3C), 사용자가 태그 직접 지정(확장 가능), 문법 엄격, 강력한 링크, UTF-8/16",
+            "VRML: 3차원 개념 도입, 마우스·방향키로 이동, 인간 중심 인터페이스, 확장자 wrl, EMBED 태그",
+            "ActiveX: 자바 대항(MS), 플랫폼 통합 / ASP: 동적 웹문서(MS), CGI 단점 극복, 확장자 *.asp",
+            "PHP: 무료, ASP·JSP보다 처리 속도 빠름 / DB 조작 언어: SQL",
+          ]},
+          { h: "참고 - 콘텐츠 포맷", items: [
+            "동영상: MPEG(국제표준·압축률↑)·ASF(스트리밍·인터넷 방송국)",
+            "사운드: WAVE(음질↑·크기↑)·MPEG(wave 1/10 압축)·MIDI(용량↓·목소리·자연음 표현 어려움)",
+          ]},
+        ]},
+        { n: 13, title: "전송 매체", rate: 40, groups: [
+          { h: "유도매체", items: [
+            "트위스트 페어 케이블: 이중나선, 전화선, 저렴",
+            "동축케이블: 장거리 전화망·케이블 TV 회선용",
+            "광섬유: 코어-클래딩-자킷 순, 중간 연결 어렵고 고가",
+          ]},
+          { h: "비 유도매체", items: [
+            "라디오(다방면 신호) / 지상 마이크로파(접시형 안테나·장거리)",
+            "위성 마이크로파(통신위성·오류↓·비용↓·고장 시 수리 곤란) / 이동통신",
+          ]},
+        ]},
+        { n: 14, title: "영역에 따른 네트워크 분류", rate: 50, groups: [
+          { h: "네트워크 분류", items: [
+            "LAN: 근거리망·지역망 / WAN: 원거리망·광역통신망",
+            "VAN: 부가가치 통신망 / MAN: 중형 통신망",
+          ]},
+          { h: "참고", items: [
+            "OSI 7계층 - 하위(1~4): 물리·데이터링크·네트워크·전송 / 상위(5~7): 세션·표현·응용",
+            "리피터: 감쇠 막는 연결 장비 / 허브: 트리구조에서 노드를 한 곳에 연결 / 프록시 서버: 방화벽 역할",
+          ]},
+        ]},
+        { n: 15, title: "통신망의 종류", rate: 40, groups: [
+          { h: "DSL 계열", items: [
+            "DSL: 디지털 가입자 회선, 일반 전화선으로 고속 데이터 전송",
+            "ADSL(비대칭): 수신·송신 속도가 다름",
+            "HDSL(고속 디지털 가입자 회선)",
+            "VDSL(초고속): 공급 가격 저렴, 설치 공간 적음",
+          ]},
+        ]},
+      ],
+    },
+    {
+      id: "p3",
+      label: "Part 3",
+      name: "웹그래픽 디자인",
+      sections: [
+        { n: 1, title: "컴퓨터 그래픽스 일반", rate: 75, groups: [
+          { h: "세대별 역사", items: [
+            "1세대(1950s 진공관): 에니악(ENIAC), CRT 영상시대, 라인프린터·XY 플로터, 그래픽스 시작기",
+            "2세대(1960s 트랜지스터): 본격 CRT·리프레시 CRT, 스케치 패드, 기반 구축",
+            "3세대(1970s 집적회로): 벡터/스타스캔형 CRT·스토리지형 CRT, 만델브로 프랙탈 이론",
+            "4세대(1980s 고밀도 집적회로): Auto CAD, 래스터 스캔형 CRT, 전성기",
+            "5세대(1990s 컴퓨터지능화): 그래픽스 대중화, LCD·LED·PDP 개발",
+          ]},
+          { h: "참고 - 정보 단위", items: [
+            "비트(bit) 최소 단위 / 1byte=8bit / 1KB=1024byte / 1MB=1024KB / 1GB=1024MB",
+          ]},
+        ]},
+        { n: 2, title: "컴퓨터의 장치 구성", rate: 65, groups: [
+          { h: "입출력 장치", items: [
+            "입력장치: 키보드·마우스·태블릿·디지타이저·스캐너·디지털카메라·터치스크린·조이스틱·라이트펜",
+            "모니터: CRT(빠름·저렴·그래픽 용이, 피로·부피·전력↑) / LCD(중간성질·휴대용·전력↓, 정밀 작업 어려움) / PDP(플라즈마·발광형·수명↑, 비싸고 발열)",
+            "프린터: 충격식(도트 매트릭스) / 비충격식(잉크젯·레이저)",
+            "플로터(대형 출력) / 필름 레코더",
+          ]},
+          { h: "CPU·기억장치", items: [
+            "CPU: 연산장치(사칙·논리연산)·제어장치(지시·감독)·레지스터(임시 기억)",
+            "주기억: ROM(읽기만·변경 불가·비휘발성) / RAM(읽기·쓰기·휘발성)",
+            "기타: 가상메모리·캐시메모리(고속, CPU와 주기억 사이)·플래시 메모리",
+            "보조: 하드디스크·플로피디스크·자기테이프(백업)·CD-R(1회)·CD-RW(반복)·DVD(CD 4배)",
+            "SRAM(전력↑·비쌈·빠름·캐시용) vs DRAM(전력↓·저렴·느림·시간 지나면 방전)",
+          ]},
+        ]},
+        { n: 3, title: "이미지의 표현 방법", rate: 75, groups: [
+          { h: "두 가지 방식", items: [
+            "비트맵(픽셀·래스터): 점들의 집합, 상세한 명암·사진 적합, 부드러운 색감. 확대 시 화질↓·용량↑. 포토샵·페인터·페인트샵 프로",
+            "벡터: 수학적 연산, 파일 용량 작음, 정교한 색상 표현 불가. 일러스트레이터·코렐 드로우·프리핸드·오토캐드",
+          ]},
+        ]},
+        { n: 4, title: "컴퓨터 그래픽의 색상", rate: 80, groups: [
+          { h: "색상 모드", items: [
+            "RGB: 가장 기본적인 컬러 모드",
+            "CMYK: 인쇄(4도 분판)·프린트, 감산 혼합, RGB보다 색상 표현 제한적",
+            "인덱스 컬러: 웹 이미지 전송용, 24비트 중 256컬러 단일채널",
+            "그레이스케일: 검정~흰색 중간단계, 컬러→그레이 변경 시 컬러정보 손실",
+            "비트맵 모드: 가장 간단한 색상 체계",
+            "듀오톤 모드: 그레이스케일에서 변경, 한 가지 색 계열",
+          ]},
+        ]},
+        { n: 5, title: "그래픽 파일 포맷", rate: 85, groups: [
+          { h: "비트맵 포맷", items: [
+            "BMP: 압축하지 않은 표준 포맷",
+            "GIF: 압축률 좋음, 웹 아이콘·로고 등 간단한 그래픽",
+            "TIFF: 애플리케이션·플랫폼 간 교환, 모든 시스템 호환",
+            "JPEG: 가장 많이 사용, 압축률 가장 좋음",
+            "PICT: 매킨토시 표준 포맷 / PDF: Adobe Acrobat 문서 작성 / RWA: 화소 정보만",
+          ]},
+          { h: "벡터 포맷", items: [
+            "EPS: 인쇄 4도 분판 목적, 비트맵+벡터 함께 저장",
+            "PSD: 포토샵 전용, 파일 용량 큼",
+            "기타: CDR/CMX·WMF·AI",
+          ]},
+        ]},
+        { n: 6, title: "그래픽 표현 요소", rate: 75, groups: [
+          { h: "해상도", items: [
+            "해상도: 화면 선명도 결정, 픽셀의 수, DPI·PPI, 클수록 선명",
+            "출력해상도: LPI(Line Per Inch), DPI:LPI=2:1",
+          ]},
+          { h: "참고", items: [
+            "앨리어싱: 이미지에 계단 현상 / 안티 앨리어싱: 계단 외형을 부드럽게",
+            "인터레이스: GIF·PNG / 프로그레스: JPEG",
+            "비트심도: 한 픽셀 색상 표현에 쓰는 비트 수",
+          ]},
+        ]},
+        { n: 7, title: "웹 디자인 프로세스", rate: 60, groups: [
+          { h: "단계", items: [
+            "프로젝트 기획: 전체 컨셉 확정, 도메인 신청",
+            "웹사이트 기획: 제작팀·아이디어·컨셉 정의·자료 수집·플로우차트(작업흐름도)·스토리보드(작업지침서·설계도)",
+            "웹사이트 구축: 사이트 디자인 / 구축(도메인 확보·프로그래밍)",
+            "유지 및 관리",
+          ]},
+        ]},
+        { n: 8, title: "네비게이션", rate: 55, groups: [
+          { h: "구조 유형", items: [
+            "순차(선형)구조: 순서대로, 앞·뒤 이동만, 자유 탐색 어려움 (회원가입 등)",
+            "그리드 구조: 순차구조 여러 개, 수평·수직, 많은 데이터 카테고리 분류",
+            "계층 구조: 가장 일반적, 계층적 연결, 하위 페이지 이동. 효율적이나 길 잃을 수 있음",
+            "네트워크 구조: 순서 없이 나열, 초보자 혼동(길 잃음 제일 많음)",
+          ]},
+        ]},
+        { n: 9, title: "레이아웃", rate: 50, groups: [
+          { h: "레이아웃 종류", items: [
+            "텍스트 위주: 간결, 목록 정리가 좋음",
+            "테이블: 부분적 배경 색상",
+            "프레임: 공통 부분이 매번 열리는 것 방지, 보통 2~3개",
+            "이미지: 시각 효과 좋음, 프레임과 비슷, 큰 용량 자제",
+          ]},
+        ]},
+        { n: 10, title: "모델링(Modeling)", rate: 50, groups: [
+          { h: "모델 종류 (3차원 형상화)", items: [
+            "와이어 프레임: 골격만 선으로, 점·선 자유 이동, 부피 없음",
+            "솔리드: 내부까지 채워진 입체, 물리적 성질, 복잡한 데이터 구조",
+            "서페이스(메쉬): 표면도 정의, 속은 비움, 은선·은면 제거 가능",
+            "파라메트릭(매개변수): 곡면 모델, 가장 많은 계산시간",
+            "프랙탈: 단순→복잡, 산·구름·해안선 등 자연의 불규칙한 움직임",
+            "파티클: 입자 이용, 불·수증기·먼지·불꽃·기포 등 미세한 부분",
+          ]},
+        ]},
+        { n: 11, title: "렌더링(Rendering)", rate: 50, groups: [
+          { h: "렌더링 과정", items: [
+            "과정: 투영 → 클리핑 → 은면 처리 → 쉐이딩 → 매핑",
+            "클리핑: 정의된 공간 밖 보이지 않는 부분 제거 / 은면: 관찰자 시점에서 안 보이는 다각형면",
+          ]},
+          { h: "쉐이딩 (음영 표현)", items: [
+            "플랫: 면 경계에서 급격한 명암차 (가장 단순·빠름)",
+            "고라우드: 플랫보다 부드럽지만 하이라이트 어색",
+            "퐁: 부드러운 곡면 적합·가장 사실적, 시간 오래 걸림",
+          ]},
+          { h: "매핑 (질감 처리)", items: [
+            "텍스처(이미지 매핑): 2차원 이미지 질감",
+            "범프: 엠보싱 효과(흰 부분 돌출), 벽돌·자갈",
+            "불투명: 유리·반투명 물체 / 솔리드 텍스처: 겉·내부 무늬 비슷",
+            "반사: 금속·거울 등 반사 오브젝트",
+            "레디오시티: 빛의 반사·표면 분산 분석 렌더링 기법",
+          ]},
+        ]},
+        { n: 12, title: "애니메이션", rate: 55, groups: [
+          { h: "기본 개념", items: [
+            "프레임: 영상 기본 단위. 만화 12~24f/s, 영화·광고 24~30f/s 이상",
+            "키 프레임: 동작의 중요한 변환점",
+            "제작과정: 기획 → 스토리보드 → 제작 → 음향합성 → 레코딩",
+          ]},
+          { h: "기법", items: [
+            "셀: 캐릭터만 움직이는 초창기 기법",
+            "스톱 모션: 한 프레임씩 촬영·연결 / 클레이: 찰흙 인형 콤마 촬영",
+            "고우 모션: 기계장치 인형, 스톱모션보다 생동감",
+            "컷 아웃: 종이를 잘라 한 장면씩 움직여 촬영",
+            "투광: 라이트 테이블 위 검은 종이·점토 틈의 빛 촬영",
+            "로토 스코핑: 실사+애니메이션 합성 / 플립 북: 페이지마다 그려 넘김",
+          ]},
+          { h: "참고", items: [
+            "모핑: 두 이미지·3D 모델 사이 변화를 서서히 표현",
+            "크로마키: 두 카메라로 배경·전경 따로 찍어 합성",
+            "모션 캡처: 실제 움직임을 추적해 캐릭터에 적용(자연스런 움직임·표정)",
+          ]},
+        ]},
+      ],
+    },
+  ],
+};
+
+// 단원별 핵심 한 줄 요약 (시험 빈출 알맹이)
+const SUMMARY = {
+  p1: {
+    1:"미술공예운동=윌리엄 모리스(수공예 부흥) · 아르누보=곡선미 · 바우하우스=그로피우스 · 데 스틸=삼원색+흑백회",
+    2:"다다이즘(허무) · 초현실(무의식·프로타주) · 추상표현=잭슨 폴락 · 팝아트(뉴욕) · 옵아트(시각적 미술)",
+    3:"4대 조건=합목적성·경제성·심미성·독창성 / 과정: 발의→확인→조사→분석→종합→평가→개발→전달",
+    4:"7원리: 균형·비례(황금비 1:1.618)·율동·동세·통일과 변화·강조와 대조·조화",
+    5:"4P=제품·가격·유통·촉진 / AIDMA=주의·흥미·욕구·기억·행동 / 수명주기 도입·성장·성숙·쇠퇴",
+    6:"발상: 모방→수정→적응(개도국)→혁신(선진국) / 브레인스토밍=오즈번",
+    7:"형태: 시트·스프레드·서적 / 명조=세리프·여성적, 고딕=산세리프·남성적",
+    8:"4대 매체=신문·잡지·TV·라디오 / DM 종류=폴더·노벨티·블로터",
+    9:"기본요소: 바닥·천장·벽·기둥보·개구부 / 직접조명 90~100%, 간접조명=침실·병실",
+    10:"적외선 780nm↑ · 가시광선 380~780nm · 자외선 380nm↓",
+    11:"색순응(지각 약해짐) · 조건등색(다른 색이 특정 광원서 같게 보임)",
+    12:"푸르킨예(어두우면 단파장이 끝까지) · 항상성 · 면적효과 · 애브니 효과",
+    13:"영-헬름홀츠 3원색설(빨녹파=가산혼합) · 헤링 반대색설(보색 잔상)",
+    14:"무채색=명도만 / 3속성: 색상(Hue)·명도(11단계)·채도(순색=최고)",
+    15:"가산혼합=색광·RGB·밝아짐 / 감산혼합=색료·CMYK·어두워짐 / 중간=병치·회전",
+    16:"현색계=먼셀·오스트발트(한국은 먼셀) / 혼색계=CIE",
+    17:"기본색명(KS 10색) · 관용색명 · 일반색명(계통색명)",
+    18:"표기 HV/C(색상 명도/채도) · 명도 11단계 · 채도 14 · 한국 표준",
+    19:"무채색 W+B=100%, 유채색 W+B+C=100% / 등백·등흑백·등순색 계열",
+    20:"동시대비(색상·명도·채도) + 보색·면적·한난·연변·계시대비 → 출제율 최고",
+    21:"동화현상 · 잔상(정·부) · 명시도(명도차) · 진출/후퇴색 · 팽창/수축색",
+    22:"게슈탈트 4원리: 근접·유사·연속·폐쇄",
+    23:"반전(루빈의 컵) · 면적·속도·길이·수평수직 착시",
+    24:"온도감(난색/한색) · 중량감(명도) · 흥분색(난색)·진정색(한색)",
+    25:"셰브럴 · 져드 4원리(질서·친근·유사·명료) · 문-스펜서(미도 M=O/C)",
+    26:"우아(보라)·개성(대조)·지성(회색)·온화(중성)·명쾌(고명도)",
+  },
+  p2: {
+    1:"IPv4(32bit)·IPv6(128bit) / 클래스 A 1~126·B 128~191·C 192~223 / ICANN·IANA",
+    2:"gTLD·ccTLD / co·go·ac·ne·or / 영문·숫자·하이픈, 최대 63자",
+    3:"아치·고퍼·텔넷(포트 23) / 전자우편 송신=SMTP, 수신=POP·IMAP",
+    4:"403 거부 · 404 없음 · 500 URL 오류 · 503 접속 과다",
+    5:"리키지·가비지(적을수록 좋음) / 검색엔진 4종: 로봇·디렉터리·하이브리드·메타",
+    6:"부울(AND>NOT>OR) · 인접(NEAR/ADJ) · 와일드카드(* , ?)",
+    7:"국내: 엠파스·네이버(링크인기도)·다음(카페)",
+    8:"국외: 구글(로봇·자동AND)·야후·알타비스타·라이코스",
+    9:"머리(HEAD·TITLE) / 표(TABLE·TR·TD·TH) / 종료태그 없음=BR·IMG·HR",
+    10:"객체지향 스크립트 / 내장함수 alert·eval·parseInt·confirm / 우선순위: 괄호>증감>산술>비교>논리>대입",
+    11:"에디터=드림위버 / 이미지=포토샵 / 동영상=플래시·마야·프리미어",
+    12:"DHTML · XML(W3C·태그 확장) · VRML(3D·wrl) · ASP(MS) · PHP(빠름)",
+    13:"유도=트위스트·동축·광섬유 / 비유도=라디오·마이크로파·위성",
+    14:"LAN·WAN·VAN·MAN / OSI 7계층(하위 1~4, 상위 5~7)",
+    15:"DSL / ADSL(비대칭)·HDSL·VDSL(초고속·저렴)",
+  },
+  p3: {
+    1:"1세대 진공관(ENIAC)~5세대 지능화 / 1byte=8bit, 1KB=1024byte",
+    2:"ROM(읽기·비휘발) vs RAM(읽기쓰기·휘발) / SRAM(빠름·캐시) vs DRAM(저렴·느림)",
+    3:"비트맵=픽셀·확대 시 화질↓ / 벡터=수학연산·용량 작음",
+    4:"RGB · CMYK(인쇄·감산) · 인덱스(256색·웹) · 그레이스케일 · 듀오톤",
+    5:"비트맵: BMP·GIF·TIFF·JPEG / 벡터: EPS·AI / 포토샵 전용=PSD",
+    6:"해상도=DPI·PPI / 앨리어싱·안티앨리어싱 / 비트심도",
+    7:"기획→사이트 기획(스토리보드)→구축→유지관리",
+    8:"순차·그리드·계층(가장 일반)·네트워크 구조",
+    9:"텍스트·테이블·프레임·이미지 레이아웃",
+    10:"와이어프레임·솔리드·서페이스(메쉬)·파라메트릭·프랙탈·파티클",
+    11:"렌더링: 투영→클리핑→은면→쉐이딩(플랫·고라우드·퐁)→매핑",
+    12:"프레임(만화 12~24f) / 셀·스톱모션·클레이·로토스코핑 / 모핑·크로마키·모션캡처",
+  },
+};
+
+</script>
+<script>
+(function(){
+  "use strict";
+  var LS_DONE="wdc_done_v1", LS_FAV="wdc_fav_v1";
+  var done=load(LS_DONE), fav=load(LS_FAV);
+  var state={part:"p1",sort:"num",filter:"all",q:"",view:"card"};
+
+  function load(k){try{return JSON.parse(localStorage.getItem(k))||{}}catch(e){return {}}}
+  function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  function key(p,n){return p+"-"+n}
+
+  function rateClass(r){
+    if(r==null) return "na";
+    if(r>=90) return "r95"; if(r>=80) return "r80"; if(r>=70) return "r70"; if(r>=60) return "r60"; return "r50";
+  }
+  function rateColor(r){return "var(--"+rateClass(r)+")"}
+
+  /* ---- 탭 ---- */
+  var tabsEl=document.getElementById("tabs");
+  STUDY_DATA.parts.forEach(function(p,i){
+    var b=document.createElement("button");
+    b.className="tab"+(i===0?" active":"");
+    b.dataset.p=p.id; b.setAttribute("role","tab");
+    b.innerHTML='<span class="dot"></span>'+p.label+' · '+p.name+' <span class="mini">'+p.sections.length+'</span>';
+    b.addEventListener("click",function(){
+      state.part=p.id; state.q=""; document.getElementById("search").value="";
+      document.getElementById("clearSearch").style.display="none";
+      [].forEach.call(tabsEl.children,function(t){t.classList.toggle("active",t.dataset.p===p.id)});
+      render(); window.scrollTo({top:0});
+    });
+    tabsEl.appendChild(b);
+  });
+
+  /* ---- 정렬/필터 ---- */
+  document.getElementById("viewGroup").addEventListener("click",function(e){
+    var b=e.target.closest("[data-view]"); if(!b) return;
+    state.view=b.dataset.view;
+    [].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)}); render();
+  });
+  document.getElementById("sortGroup").addEventListener("click",function(e){
+    var b=e.target.closest("[data-sort]"); if(!b) return;
+    state.sort=b.dataset.sort;
+    [].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)}); render();
+  });
+  document.getElementById("filterGroup").addEventListener("click",function(e){
+    var b=e.target.closest("[data-filter]"); if(!b) return;
+    state.filter=b.dataset.filter;
+    [].forEach.call(this.children,function(x){x.classList.toggle("on",x===b)}); render();
+  });
+
+  /* ---- 검색 ---- */
+  var searchEl=document.getElementById("search"), clearEl=document.getElementById("clearSearch");
+  var t;
+  searchEl.addEventListener("input",function(){
+    clearEl.style.display=this.value?"block":"none";
+    clearTimeout(t); var v=this.value; t=setTimeout(function(){state.q=v.trim().toLowerCase();render()},120);
+  });
+  clearEl.addEventListener("click",function(){searchEl.value="";state.q="";this.style.display="none";render();searchEl.focus()});
+
+  function hl(text,q){
+    if(!q) return esc(text);
+    var lo=text.toLowerCase(), out="", i=0, idx;
+    while((idx=lo.indexOf(q,i))!==-1){
+      out+=esc(text.slice(i,idx))+"<mark>"+esc(text.slice(idx,idx+q.length))+"</mark>";
+      i=idx+q.length;
+    }
+    return out+esc(text.slice(i));
+  }
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+  /* ---- 렌더 ---- */
+  var main=document.getElementById("main");
+  function render(){
+    var searching=!!state.q;
+    var partsToShow = searching ? STUDY_DATA.parts : STUDY_DATA.parts.filter(function(p){return p.id===state.part});
+    main.innerHTML="";
+    var anyShown=0;
+
+    partsToShow.forEach(function(p){
+      var secs=p.sections.slice();
+
+      // 검색 매칭
+      if(searching){
+        secs=secs.filter(function(s){return matches(s,state.q)});
+      }
+      // 필터
+      if(state.filter==="todo") secs=secs.filter(function(s){return !done[key(p.id,s.n)]});
+      if(state.filter==="fav") secs=secs.filter(function(s){return fav[key(p.id,s.n)]});
+      // 정렬
+      if(state.sort==="rate") secs.sort(function(a,b){return (b.rate||0)-(a.rate||0)});
+      else secs.sort(function(a,b){return a.n-b.n});
+
+      if(!secs.length) return;
+      anyShown+=secs.length;
+
+      var head=document.createElement("div"); head.className="part-head";
+      head.innerHTML='<span class="lbl" style="color:'+( p.id==="p1"?"var(--r95)":p.id==="p2"?"var(--r50)":"var(--r60)")+'">'+p.label+'</span>'+
+        '<span class="nm">'+p.name+'</span>'+
+        '<span class="cnt">'+secs.length+(searching?' 건 검색됨':' 단원')+'</span>';
+      main.appendChild(head);
+
+      if(state.view==="brief"){
+        var wrap=document.createElement("div"); wrap.className="brief";
+        secs.forEach(function(s){ wrap.appendChild(buildBriefRow(p,s,searching)) });
+        main.appendChild(wrap);
+      }else{
+        var grid=document.createElement("div"); grid.className="grid";
+        secs.forEach(function(s){ grid.appendChild(buildCard(p,s,searching)) });
+        main.appendChild(grid);
+      }
+    });
+
+    if(anyShown && state.view==="brief"){
+      var tip=document.createElement("div"); tip.className="brief-tip";
+      tip.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg>'+
+        '핵심만 압축한 요약본이에요. 행을 눌러 ✓·☆ 표시하거나, 키보드 Ctrl/⌘+P 로 인쇄·PDF 저장할 수 있어요.';
+      main.insertBefore(tip,main.firstChild);
+    }
+
+    if(!anyShown){
+      main.innerHTML='<div class="empty"><div class="big">'+(searching?"🔍":state.filter==="fav"?"☆":"✓")+'</div>'+
+        '<h4>'+(searching?'"'+esc(state.q)+'" 검색 결과가 없어요':state.filter==="fav"?'즐겨찾기한 단원이 없어요':'모든 단원을 완료했어요!')+'</h4>'+
+        '<p>'+(searching?'다른 키워드로 검색해 보세요.':state.filter==="fav"?'카드의 ☆ 버튼으로 어려운 단원을 표시해 두세요.':'전체 보기로 복습할 수 있어요.')+'</p></div>';
+    }
+    updateProgress();
+  }
+
+  function matches(s,q){
+    if(s.title.toLowerCase().indexOf(q)!==-1) return true;
+    return s.groups.some(function(g){
+      if(g.h.toLowerCase().indexOf(q)!==-1) return true;
+      return g.items.some(function(it){return it.toLowerCase().indexOf(q)!==-1});
+    });
+  }
+
+  function buildCard(p,s,searching){
+    var k=key(p.id,s.n), isDone=!!done[k], isFav=!!fav[k];
+    var card=document.createElement("div");
+    card.className="card"+(isDone?" done":"")+(searching?" open":"");
+    var rc=rateClass(s.rate), col=rateColor(s.rate);
+
+    var head=document.createElement("div"); head.className="chead";
+    head.innerHTML=
+      '<div class="done-flag" aria-hidden="true"></div>'+
+      '<div class="chip-rate '+rc+'" style="'+(rc!=="na"?"background:"+col:"")+'">'+
+        (s.rate!=null?'<span class="v">'+s.rate+'</span><span class="u">출제%</span>':'<span class="v">참고</span>')+
+      '</div>'+
+      '<div class="ctitle">'+
+        '<span class="num">단원 '+s.n+'</span><br>'+
+        '<h3>'+hl(s.title,searching?state.q:"")+'</h3>'+
+        (s.rate!=null?'<div class="bar"><i style="width:'+s.rate+'%;background:'+col+'"></i></div>':'')+
+      '</div>'+
+      '<div class="cacts">'+
+        '<button class="iconbtn fav'+(isFav?" on":"")+'" title="즐겨찾기" aria-label="즐겨찾기">'+
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="'+(isFav?"currentColor":"none")+'" stroke="currentColor" stroke-width="2"><path d="M12 17.3 6.2 20.7l1.5-6.6L2.5 9.6l6.7-.6L12 2.9l2.8 6.1 6.7.6-5.2 4.5 1.5 6.6z"/></svg>'+
+        '</button>'+
+        '<button class="iconbtn chk'+(isDone?" on":"")+'" title="완료 체크" aria-label="완료 체크">'+
+          '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>'+
+        '</button>'+
+        '<span class="iconbtn caret" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>'+
+      '</div>';
+    card.appendChild(head);
+
+    var body=document.createElement("div"); body.className="cbody";
+    var inner='<div class="cbody-in"><div class="cbody-pad" style="--accent:'+col+'">';
+    s.groups.forEach(function(g){
+      inner+='<div class="group"><div class="gh">'+hl(g.h,searching?state.q:"")+'</div><ul>';
+      g.items.forEach(function(it){
+        var sub = it.charAt(0)==="├" || it.charAt(0)==="└";
+        inner+='<li'+(sub?' class="sub"':'')+'>'+hl(it,searching?state.q:"")+'</li>';
+      });
+      inner+='</ul></div>';
+    });
+    inner+='</div></div>';
+    body.innerHTML=inner;
+    card.appendChild(body);
+
+    // 펼치기/접기
+    head.addEventListener("click",function(e){
+      if(e.target.closest(".iconbtn.fav")||e.target.closest(".iconbtn.chk")) return;
+      card.classList.toggle("open");
+    });
+    // 즐겨찾기
+    head.querySelector(".fav").addEventListener("click",function(e){
+      e.stopPropagation();
+      if(fav[k]){delete fav[k];this.classList.remove("on");this.querySelector("svg").setAttribute("fill","none");toast("즐겨찾기 해제")}
+      else{fav[k]=1;this.classList.add("on");this.querySelector("svg").setAttribute("fill","currentColor");toast("즐겨찾기 추가 ☆")}
+      save(LS_FAV,fav); updateProgress();
+      if(state.filter==="fav") render();
+    });
+    // 완료
+    head.querySelector(".chk").addEventListener("click",function(e){
+      e.stopPropagation();
+      if(done[k]){delete done[k];this.classList.remove("on");card.classList.remove("done");toast("완료 해제")}
+      else{done[k]=1;this.classList.add("on");card.classList.add("done");toast("완료! ✓")}
+      save(LS_DONE,done); updateProgress();
+      if(state.filter==="todo") render();
+    });
+    return card;
+  }
+
+  function buildBriefRow(p,s,searching){
+    var k=key(p.id,s.n), isDone=!!done[k], isFav=!!fav[k];
+    var rc=rateClass(s.rate), col=rateColor(s.rate);
+    var sum=(SUMMARY[p.id]&&SUMMARY[p.id][s.n])||"";
+    var q=searching?state.q:"";
+    var row=document.createElement("div");
+    row.className="brow"+(isDone?" done":"");
+    row.innerHTML=
+      '<div class="chip-s '+rc+'" style="'+(rc!=="na"?"background:"+col:"")+'">'+(s.rate!=null?s.rate:"참고")+'</div>'+
+      '<div class="bmain">'+
+        '<div class="bt"><span class="bn">'+s.n+'</span>'+hl(s.title,q)+'</div>'+
+        (sum?'<div class="bs">'+hl(sum,q)+'</div>':'')+
+      '</div>'+
+      '<div class="bacts">'+
+        '<button class="iconbtn fav'+(isFav?" on":"")+'" title="즐겨찾기" aria-label="즐겨찾기">'+
+          '<svg width="17" height="17" viewBox="0 0 24 24" fill="'+(isFav?"currentColor":"none")+'" stroke="currentColor" stroke-width="2"><path d="M12 17.3 6.2 20.7l1.5-6.6L2.5 9.6l6.7-.6L12 2.9l2.8 6.1 6.7.6-5.2 4.5 1.5 6.6z"/></svg>'+
+        '</button>'+
+        '<button class="iconbtn chk'+(isDone?" on":"")+'" title="완료 체크" aria-label="완료 체크">'+
+          '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>'+
+        '</button>'+
+      '</div>';
+    row.querySelector(".fav").addEventListener("click",function(){
+      if(fav[k]){delete fav[k];toast("즐겨찾기 해제")}else{fav[k]=1;toast("즐겨찾기 추가 ☆")}
+      save(LS_FAV,fav); updateProgress(); render();
+    });
+    row.querySelector(".chk").addEventListener("click",function(){
+      if(done[k]){delete done[k];toast("완료 해제")}else{done[k]=1;toast("완료! ✓")}
+      save(LS_DONE,done); updateProgress(); render();
+    });
+    return row;
+  }
+
+  /* ---- 진도 ---- */
+  var total=STUDY_DATA.parts.reduce(function(a,p){return a+p.sections.length},0);
+  document.getElementById("totalCount").textContent=total;
+  function updateProgress(){
+    var d=Object.keys(done).length, f=Object.keys(fav).length;
+    var pct=total?Math.round(d/total*100):0;
+    document.getElementById("doneCount").textContent=d;
+    document.getElementById("ringPct").textContent=pct+"%";
+    document.getElementById("favLine").textContent="즐겨찾기 "+f+"개";
+    var c=2*Math.PI*19;
+    document.getElementById("ringFg").style.strokeDashoffset=c*(1-pct/100);
+  }
+
+  /* ---- 토스트 ---- */
+  var toastEl=document.getElementById("toast"), tt;
+  function toast(msg){toastEl.textContent=msg;toastEl.classList.add("show");clearTimeout(tt);tt=setTimeout(function(){toastEl.classList.remove("show")},1400)}
+
+  /* ---- 초기화 ---- */
+  document.getElementById("resetBtn").addEventListener("click",function(){
+    if(confirm("완료 체크와 즐겨찾기를 모두 지울까요?")){
+      done={};fav={};save(LS_DONE,done);save(LS_FAV,fav);render();toast("학습 기록을 초기화했어요")
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
