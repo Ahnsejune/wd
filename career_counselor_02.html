@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>직업상담사 2급 실기 · 6개년 기출 학습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root{
+  --bg:#EBEFEC; --paper:#FCFDFB; --ink:#1A2420; --ink-soft:#566159; --line:#DCE2DD;
+  --brand:#147A57; --brand-deep:#0E5C42; --amber:#E7B23E; --amber-soft:#FBF1D6;
+  --c-theory:#147A57; --c-practice:#2A7DA0; --c-test:#6A5AB0;
+  --c-job:#B07A2E; --c-classify:#566876; --c-labor:#C2603F;
+  --radius:14px; --shadow:0 1px 2px rgba(26,36,32,.06), 0 8px 24px rgba(26,36,32,.06);
+  --serif:"Gowun Batang", serif;
+  --sans:"Pretendard Variable", Pretendard, -apple-system, system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;
+  letter-spacing:-.01em;-webkit-font-smoothing:antialiased;padding-bottom:48px}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:focus-visible{outline:2.5px solid var(--brand);outline-offset:2px;border-radius:6px}
+
+/* ---------- Header ---------- */
+.top{position:sticky;top:0;z-index:50;background:rgba(235,239,236,.86);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.top-inner{max-width:880px;margin:0 auto;padding:14px 18px 0}
+.brand-row{display:flex;align-items:center;gap:14px;justify-content:space-between}
+.brand h1{font-family:var(--serif);font-weight:700;font-size:1.32rem;line-height:1.25;letter-spacing:-.02em}
+.brand .sub{font-size:.72rem;color:var(--ink-soft);font-weight:500;margin-top:1px;
+  letter-spacing:.04em;text-transform:uppercase}
+.ring{flex-shrink:0;display:flex;align-items:center;gap:9px}
+.ring svg{display:block;transform:rotate(-90deg)}
+.ring .pct{font-family:var(--serif);font-size:1.05rem;font-weight:700;line-height:1}
+.ring .lbl{font-size:.66rem;color:var(--ink-soft);letter-spacing:.02em;margin-top:2px}
+
+/* search */
+.search{position:relative;margin-top:13px}
+.search input{width:100%;padding:11px 14px 11px 40px;border:1px solid var(--line);
+  background:var(--paper);border-radius:11px;font-size:.95rem;font-family:inherit;color:var(--ink)}
+.search input::placeholder{color:#9aa49d}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:#9aa49d}
+.search .clr{position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  width:26px;height:26px;border-radius:7px;color:var(--ink-soft);font-size:1.1rem;display:none}
+.search.has-val .clr{display:flex;align-items:center;justify-content:center}
+
+/* modes */
+.modes{display:flex;gap:4px;margin-top:13px;background:#E0E6E1;padding:4px;border-radius:12px}
+.modes button{flex:1;padding:9px 6px;border-radius:9px;font-size:.86rem;font-weight:600;
+  color:var(--ink-soft);transition:.16s;display:flex;align-items:center;justify-content:center;gap:6px}
+.modes button .ic{font-size:.95rem}
+.modes button.on{background:var(--paper);color:var(--brand-deep);box-shadow:0 1px 3px rgba(26,36,32,.12)}
+
+/* category chips */
+.chips{display:flex;gap:7px;overflow-x:auto;padding:13px 0 14px;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;padding:6px 13px;
+  border:1px solid var(--line);background:var(--paper);border-radius:999px;
+  font-size:.82rem;font-weight:600;color:var(--ink-soft);transition:.14s;white-space:nowrap}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--cc,#999)}
+.chip .ct{font-size:.72rem;color:#9aa49d;font-weight:600}
+.chip.on{color:#fff;border-color:transparent;background:var(--cc,var(--brand))}
+.chip.on .dot{background:rgba(255,255,255,.9)}
+.chip.on .ct{color:rgba(255,255,255,.85)}
+.chip.all.on{background:var(--ink);}
+
+/* ---------- main ---------- */
+main{max-width:880px;margin:0 auto;padding:6px 18px 0}
+
+/* list toolbar */
+.list-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:4px 2px 14px;flex-wrap:wrap}
+.list-bar .count{font-size:.83rem;color:var(--ink-soft)}
+.list-bar .count b{color:var(--ink);font-weight:700}
+.list-bar .acts{display:flex;gap:7px}
+.minibtn{padding:6px 11px;border:1px solid var(--line);background:var(--paper);
+  border-radius:8px;font-size:.78rem;font-weight:600;color:var(--ink-soft);transition:.14s}
+.minibtn:hover{border-color:#c3ccc4}
+.minibtn.act{color:var(--brand-deep);border-color:var(--brand);background:#E8F3EE}
+
+/* question card */
+.q{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--cc,var(--brand));
+  border-radius:var(--radius);margin-bottom:11px;overflow:hidden;box-shadow:var(--shadow);transition:.18s}
+.q.done{border-left-color:var(--amber);background:#FDFBF4}
+.q-head{display:flex;align-items:flex-start;gap:11px;padding:15px 16px;cursor:pointer}
+.q-num{flex-shrink:0;font-family:var(--serif);font-weight:700;font-size:.95rem;
+  color:var(--cc,var(--brand));min-width:30px;padding-top:1px}
+.q-body{flex:1;min-width:0}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.tag{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:6px;
+  background:var(--cc,var(--brand));color:#fff;letter-spacing:.01em}
+.years{font-size:.7rem;color:#9aa49d;font-weight:500}
+.q-text{font-size:.96rem;font-weight:500;line-height:1.5;color:var(--ink)}
+.q-star{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:flex;
+  align-items:center;justify-content:center;color:#c3ccc4;transition:.14s;font-size:1.15rem}
+.q-star:hover{background:#F0F3F0}
+.q.done .q-star{color:var(--amber)}
+.ans{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.ans-in{padding:0 16px 16px 57px;font-size:.92rem;line-height:1.72;
+  white-space:pre-wrap;color:#2c3631;border-top:1px dashed transparent}
+.q.open .ans-in{border-top-color:var(--line);padding-top:14px}
+.ans-in .alabel{display:inline-block;font-size:.7rem;font-weight:700;color:var(--brand-deep);
+  background:#E8F3EE;padding:2px 8px;border-radius:5px;margin-bottom:9px;letter-spacing:.03em}
+.toggle{display:inline-flex;align-items:center;gap:5px;margin-top:11px;margin-left:57px;
+  margin-bottom:0;font-size:.8rem;font-weight:600;color:var(--brand);padding:5px 0}
+.toggle svg{transition:transform .2s}
+.q.open .toggle svg{transform:rotate(180deg)}
+
+.empty{text-align:center;padding:60px 20px;color:var(--ink-soft)}
+.empty .big{font-size:2.2rem;margin-bottom:10px}
+.empty p{font-size:.92rem}
+
+/* ---------- flashcard ---------- */
+.fc-wrap{padding:8px 0 0}
+.fc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.fc-counter{font-size:.85rem;color:var(--ink-soft);font-weight:600}
+.fc-counter b{font-family:var(--serif);color:var(--ink);font-size:1.05rem}
+.fc-shuffle{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;
+  color:var(--ink-soft);padding:6px 11px;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+.card-scene{perspective:1600px;margin-bottom:16px}
+.card{position:relative;width:100%;min-height:340px;transition:transform .5s cubic-bezier(.4,.2,.2,1);
+  transform-style:preserve-3d;cursor:pointer}
+.card.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--cc,var(--brand));
+  border-radius:18px;box-shadow:var(--shadow);padding:24px 22px;display:flex;flex-direction:column}
+.face.back{transform:rotateY(180deg);overflow-y:auto}
+.fc-meta{display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.fc-side{margin-left:auto;font-size:.7rem;font-weight:700;color:#9aa49d;letter-spacing:.06em}
+.fc-q{font-size:1.18rem;font-weight:600;line-height:1.55;color:var(--ink);flex:1;display:flex;align-items:center}
+.fc-hint{text-align:center;font-size:.78rem;color:#9aa49d;margin-top:14px}
+.fc-a{font-size:.97rem;line-height:1.78;white-space:pre-wrap;color:#2c3631}
+.fc-anum{font-family:var(--serif);font-weight:700;color:var(--cc,var(--brand));font-size:.95rem}
+.fc-ctrl{display:flex;gap:10px;align-items:stretch}
+.fc-nav{flex:1;padding:14px;border-radius:12px;background:var(--paper);border:1px solid var(--line);
+  font-weight:600;font-size:.92rem;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:7px;transition:.14s}
+.fc-nav:hover{border-color:#c3ccc4}
+.fc-nav:disabled{opacity:.4;cursor:default}
+.fc-mark{flex:0 0 auto;padding:14px 20px;border-radius:12px;background:var(--brand);color:#fff;
+  font-weight:700;font-size:.92rem;display:flex;align-items:center;justify-content:center;gap:7px;transition:.14s}
+.fc-mark.done{background:var(--amber);color:#5a4410}
+.fc-skip{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:14px;
+  font-size:.82rem;color:var(--ink-soft);font-weight:600}
+.fc-skip input{width:17px;height:17px;accent-color:var(--brand)}
+
+/* ---------- quiz ---------- */
+.quiz-wrap{padding:8px 0 0}
+.quiz-stat{display:flex;gap:10px;margin-bottom:16px}
+.stat{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:12px;
+  padding:13px 14px;text-align:center}
+.stat .v{font-family:var(--serif);font-size:1.5rem;font-weight:700;line-height:1;color:var(--ink)}
+.stat .v.ok{color:var(--brand)}
+.stat .v.no{color:var(--c-labor)}
+.stat .k{font-size:.72rem;color:var(--ink-soft);margin-top:5px;font-weight:600}
+.quiz-card{background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--cc,var(--brand));
+  border-radius:18px;box-shadow:var(--shadow);padding:22px 20px;margin-bottom:16px;min-height:200px}
+.quiz-card .fc-meta{margin-bottom:14px}
+.quiz-q{font-size:1.12rem;font-weight:600;line-height:1.55;color:var(--ink)}
+.quiz-a{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);
+  font-size:.95rem;line-height:1.76;white-space:pre-wrap;color:#2c3631;display:none}
+.quiz-a.show{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.quiz-reveal{width:100%;padding:14px;border-radius:12px;background:var(--brand);color:#fff;
+  font-weight:700;font-size:.95rem;transition:.14s}
+.quiz-reveal:hover{background:var(--brand-deep)}
+.quiz-grade{display:flex;gap:10px}
+.grade{flex:1;padding:14px;border-radius:12px;font-weight:700;font-size:.95rem;
+  display:flex;align-items:center;justify-content:center;gap:7px;border:1.5px solid;transition:.14s}
+.grade.g-ok{color:var(--brand-deep);border-color:var(--brand);background:#E8F3EE}
+.grade.g-ok:hover{background:var(--brand);color:#fff}
+.grade.g-no{color:var(--c-labor);border-color:var(--c-labor);background:#FBECE7}
+.grade.g-no:hover{background:var(--c-labor);color:#fff}
+.quiz-reset{display:block;margin:18px auto 0;font-size:.8rem;color:var(--ink-soft);
+  text-decoration:underline;text-underline-offset:3px;font-weight:500}
+
+footer{max-width:880px;margin:34px auto 0;padding:18px;text-align:center;
+  font-size:.74rem;color:#9aa49d;border-top:1px solid var(--line);line-height:1.7}
+
+@media(max-width:560px){
+  .brand h1{font-size:1.12rem}
+  .ans-in{padding-left:16px}
+  .toggle{margin-left:0}
+  .q-num{min-width:24px;font-size:.85rem}
+  .fc-q{font-size:1.06rem}
+  .modes button . txt{font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+  .card{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand-row">
+      <div class="brand">
+        <div class="sub">직업상담사 2급 · 실기 기출</div>
+        <h1>6개년 단권화 학습노트</h1>
+      </div>
+      <div class="ring" id="ring">
+        <svg width="46" height="46" viewBox="0 0 46 46">
+          <circle cx="23" cy="23" r="19" fill="none" stroke="#DCE2DD" stroke-width="5"/>
+          <circle id="ringArc" cx="23" cy="23" r="19" fill="none" stroke="#147A57"
+            stroke-width="5" stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="119.4"/>
+        </svg>
+        <div>
+          <div class="pct"><span id="ringPct">0</span>%</div>
+          <div class="lbl">암기 진도</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search" id="searchWrap">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="search" type="search" placeholder="문항·답안 키워드 검색 (예: 신뢰도, 수퍼, 실업률)" autocomplete="off">
+      <button class="clr" id="searchClr" aria-label="검색어 지우기">✕</button>
+    </div>
+
+    <nav class="modes" id="modes">
+      <button data-mode="list" class="on"><span class="ic">📋</span><span class="txt">목록 학습</span></button>
+      <button data-mode="card"><span class="ic">🃏</span><span class="txt">플래시카드</span></button>
+      <button data-mode="quiz"><span class="ic">✍️</span><span class="txt">시험 모드</span></button>
+    </nav>
+
+    <div class="chips" id="chips"></div>
+  </div>
+</header>
+
+<main>
+  <!-- LIST -->
+  <section id="view-list">
+    <div class="list-bar">
+      <div class="count"><b id="listCount">0</b>문항</div>
+      <div class="acts">
+        <button class="minibtn" id="hideDone">암기 숨기기</button>
+        <button class="minibtn" id="expandAll">모두 펼치기</button>
+      </div>
+    </div>
+    <div id="list"></div>
+  </section>
+
+  <!-- FLASHCARD -->
+  <section id="view-card" style="display:none">
+    <div class="fc-wrap">
+      <div class="fc-top">
+        <div class="fc-counter"><b id="fcNow">1</b> / <span id="fcTotal">0</span></div>
+        <button class="fc-shuffle" id="fcShuffle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="M4 4l5 5"/></svg>섞기</button>
+      </div>
+      <div class="card-scene">
+        <div class="card" id="fcCard">
+          <div class="face front">
+            <div class="fc-meta" id="fcFrontMeta"></div>
+            <div class="fc-q" id="fcQ"></div>
+            <div class="fc-hint">카드를 눌러 답안 확인 ↦</div>
+          </div>
+          <div class="face back">
+            <div class="fc-meta"><span class="fc-side">정답</span></div>
+            <div class="fc-a" id="fcA"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-ctrl">
+        <button class="fc-nav" id="fcPrev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>이전</button>
+        <button class="fc-mark" id="fcMark">암기 ✓</button>
+        <button class="fc-nav" id="fcNext">다음<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <label class="fc-skip"><input type="checkbox" id="fcSkipDone">암기한 문항 제외하고 학습</label>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="view-quiz" style="display:none">
+    <div class="quiz-wrap">
+      <div class="quiz-stat">
+        <div class="stat"><div class="v" id="qzTotal">0</div><div class="k">푼 문항</div></div>
+        <div class="stat"><div class="v ok" id="qzOk">0</div><div class="k">맞음</div></div>
+        <div class="stat"><div class="v no" id="qzNo">0</div><div class="k">틀림</div></div>
+        <div class="stat"><div class="v" id="qzAcc">—</div><div class="k">정답률</div></div>
+      </div>
+      <div class="quiz-card" id="qzCard">
+        <div class="fc-meta" id="qzMeta"></div>
+        <div class="quiz-q" id="qzQ"></div>
+        <div class="quiz-a" id="qzA"></div>
+      </div>
+      <button class="quiz-reveal" id="qzReveal">정답 확인하기</button>
+      <div class="quiz-grade" id="qzGrade" style="display:none">
+        <button class="grade g-no" id="qzWrong">✕ 틀렸어요</button>
+        <button class="grade g-ok" id="qzRight">✓ 맞았어요</button>
+      </div>
+      <button class="quiz-reset" id="qzReset">기록 초기화</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  직업상담사 2급 실기 · 2019~2024 6개년 기출 187문항 단권화<br>
+  학습 진도는 이 브라우저에 저장되어 다음에 열어도 유지됩니다.
+</footer>
+
+<script>
+/* ===== DATA (injected) ===== */
+// 직업상담사 2급 실기 6개년(2019~2024) 기출 데이터
+// cat: theory(상담이론) | practice(상담실무) | test(심리검사) | job(직무·직업정보) | classify(직업·산업분류) | labor(노동시장)
+const QUESTIONS = [
+{id:1,cat:"theory",years:"2022-3 / 2021-3 / 2021-1 / 2020-2",q:"부처(Butcher)의 집단 직업상담 과정 3단계 모델을 쓰고 설명하시오.",a:"① 탐색단계 — 자기개방, 흥미와 적성에 대한 탐색, 측정결과에 대한 피드백, 자아상과 피드백 내용 간 불일치의 해결.\n② 전환단계 — 자신의 지식과 직업세계의 연결이 이루어지는 단계, 가치와 피드백 간 불일치 해결.\n③ 행동단계 — 목표를 설정하고 정보의 수집·공유가 이루어지며, 목표 달성을 위한 구체적 행동을 하는 단계."},
+{id:2,cat:"theory",years:"2022-3 / 2020-1",q:"아들러(Adler)의 개인주의 상담과정의 목표 5가지를 쓰시오.",a:"① 사회적 관심을 갖도록 돕는다.\n② 패배감을 극복하고 열등감을 감소시킬 수 있도록 돕는다.\n③ 내담자의 잘못된 가치와 목표를 수정하도록 돕는다.\n④ 잘못된 동기를 바꾸도록 돕는다.\n⑤ 내담자가 타인과의 동질감을 갖도록 돕는다.\n⑥ 사회의 구성원으로 기여하도록 돕는다."},
+{id:3,cat:"theory",years:"2022-3 / 2019-1",q:"크라이티스(Crites)의 포괄적 직업상담의 상담과정을 단계별로 설명하시오.",a:"① 1단계 진단 — 내담자의 진로문제 진단 및 문제파악을 위해 심리검사 자료와 상담을 통한 자료가 수집된다.\n② 2단계 명료화 및 해석 — 의사결정 과정을 방해하는 태도와 행동을 확인해 대안을 탐색한다. 상담자와 내담자가 함께 문제의 원인을 명료화하고 해결방안을 모색한다.\n③ 3단계 문제해결 — 문제해결을 위해 어떤 행동을 실제로 취해야 하는지 결정한다."},
+{id:4,cat:"theory",years:"2022-3 / 2020-2",q:"직업적응 이론에서 개인과 환경이 상호작용하는 특성을 나타내는 4가지 성격유형 요소를 설명하시오.",a:"① 민첩성 — 개인이 얼마나 빠르게 환경에 적응할 수 있는가(속도)를 의미한다.\n② 역량 — 개인이 환경과 상호작용하는 활동수준·강도. 높은 에너지를 가진 사람이 더 많은 역량이 있다고 본다.\n③ 리듬 — 과제 수행 과정의 패턴이 얼마나 꾸준하고 주기적인가/불규칙한가(활동의 다양성).\n④ 지구력(지속성) — 불만족스러운 환경을 참고 얼마나 오래 상호작용을 유지할 수 있는가."},
+{id:5,cat:"theory",years:"2023-2 / 2019-1",q:"롭퀴스트와 데이비스의 직업적응 이론에서 직업적응방식의 유형을 쓰고 설명하시오.",a:"① 융통성 — 개인이 작업환경과 자신의 환경 사이 부조화를 참아낼 수 있는 정도.\n② 끈기 — 환경이 자신에게 맞지 않아도 얼마나 오래 견딜 수 있는지.\n③ 반응성 — 개인이 작업환경에 반응하는 정도.\n④ 적응성 — 작업환경을 자신과 더 조화롭게 만들기 위해 노력하는 정도."},
+{id:6,cat:"theory",years:"2022-3 / 2024-1",q:"직업적응 이론(TWA)에서 중요하게 다루는 직업가치 6가지를 쓰시오.",a:"① 지위  ② 성취  ③ 이타심  ④ 안정성  ⑤ 보호(안락함·편안함)  ⑥ 자율성"},
+{id:7,cat:"theory",years:"2022-3",q:"사회학습이론에서 크롬볼츠(Krumboltz)가 제시한 진로선택에 영향을 주는 요인 4가지를 쓰시오.",a:"① 유전적 요인과 특별한 능력\n② 환경적 조건과 사건\n③ 학습경험\n④ 과제 접근 기술"},
+{id:8,cat:"test",years:"2022-3 / 2020-2 / 2024-1",q:"규준 제작 시 사용되는 확률표집방법 3가지를 쓰고 설명하시오.",a:"① 단순 무선 표집 — 구성원에게 번호를 부여하고 무작위로 뽑아 표집. 모집단 구성원이 표본에 속할 확률이 동일하다.\n② 층화표집 — 모집단이 서로 이질적인 하위집단으로 구성된 경우 각 하위집단에서 표집하여 추출.\n③ 군집표집 — 모집단이 서로 동질적인 하위집단으로 구성된 경우 한 집단 자체를 표본으로 추출."},
+{id:9,cat:"test",years:"2024-2",q:"비확률표집방법 3가지를 쓰고 각각 설명하시오.",a:"① 편의표집(임의표집) — 조사자가 손쉽게 이용 가능한 대상을 선택하는 방법.\n② 판단표집(유의표집) — 조사에 적합하다고 판단된 대상자를 의도적으로 선택하는 방법.\n③ 눈덩이표집(누적표집) — 초기 조사대상자가 추가 대상자를 추천하는 방식으로 표본을 확장.\n④ 할당표집 — 모집단을 하위집단으로 나눈 후 각 하위집단에서 표본을 할당하여 선택."},
+{id:10,cat:"test",years:"2022-3 / 2019-2",q:"측정오차를 줄여 신뢰성을 높이기 위한 구체적 방법 6가지를 쓰시오.",a:"① 검사 문항의 수를 늘린다.\n② 신뢰도에 나쁜 영향을 주는 문항을 제거한다.\n③ 표준화된 검사를 사용한다.\n④ 균일한 검사 조건을 유지한다.\n⑤ 검사 실시와 채점 방식을 표준화한다.\n⑥ 적절한 표본을 추출하여 측정한다."},
+{id:11,cat:"test",years:"2022-3 / 2022-2 / 2018-3",q:"준거 타당도 계수의 크기에 영향을 미치는 요인 3가지를 쓰고 설명하시오.",a:"① 표집오차 — 표집집단이 전체 모집단을 대표하지 못해 발생하는 오차.\n② 준거측정치의 신뢰도 — 준거측정치의 신뢰도가 낮으면 검사의 타당도도 낮아진다.\n③ 준거측정치의 타당도 — 준거를 측정하는 도구가 해당 준거를 잘 반영하는지가 영향을 미친다.\n④ 범위 제한 — 검사점수·준거점수의 일부 범위만 포괄하면 상관계수가 실제보다 작아진다."},
+{id:12,cat:"test",years:"2022-3 / 2019-2 / 2021-2 / 2024-1",q:"객관적 형태의 자기 보고형 검사(설문지형)가 가지는 장점 5가지를 쓰시오.",a:"① 검사 실시 시간이 짧다.\n② 검사 비용이 경제적이다.\n③ 검사 결과에 대한 해석이 용이하다.\n④ 신뢰도와 타당도가 높은 편이다.\n⑤ 검사 환경의 영향을 적게 받는다.\n(↔ 투사적 검사: 신뢰도·타당도 검증 어려움, 채점에 높은 전문성 요구, 검사자·상황 영향 큼)"},
+{id:13,cat:"test",years:"2019-3",q:"객관식 형태의 자기 보고형 검사(설문지형)의 단점 3가지를 쓰시오.",a:"① 내담자가 문항의 의도를 파악하여 방어할 수 있다.\n② 반응이 제한적이어서 다양한 반응 관찰이 어렵고 무의식까지 관찰할 수 없다.\n③ 내담자의 반응 경향성에 따라 답변이 오염될 수 있다."},
+{id:14,cat:"test",years:"2020-3",q:"투사적 검사의 장점과 단점을 각 3가지씩 쓰시오.",a:"[장점]\n① 수검자의 방어를 무력화할 수 있다.\n② 수검자의 무의식을 이끌어 낼 수 있다.\n③ 수검자의 다양한 반응을 관찰할 수 있다.\n[단점]\n① 결과 해석에 고도로 훈련된 전문가가 필요하다.\n② 시행에 비용과 시간이 많이 든다.\n③ 신뢰도와 타당도가 낮다."},
+{id:15,cat:"test",years:"2022-3",q:"진로성숙도 검사(CMI)의 태도 척도와 능력 척도를 각각 3가지씩 쓰시오.",a:"① 태도척도 — 진로 결정성, 참여도, 독립성, 성향, 타협성.\n② 능력척도 — 자기평가, 직업정보, 목표선정, 계획, 문제해결."},
+{id:16,cat:"test",years:"2020-3",q:"CMI 검사에서 능력척도 3가지를 쓰고 설명하시오.",a:"① 자기평가 — 자신의 능력·성격·흥미를 이해하는 능력.\n② 직업정보 — 관심 직업에 대한 정보를 얼마나 가지고/수집할 수 있는지에 대한 능력.\n③ 목표선정 — 자신의 정보와 직업세계를 연결하여 직업 목표를 선정하는 능력."},
+{id:17,cat:"job",years:"2019-1 / 2020-4 / 2022-3 / 2021-1 / 2024-2",q:"직무분석방법 중 최초 분석법에 해당하는 방법 4가지를 쓰고 설명하시오.",a:"① 체험법 — 분석자가 직접 직무를 체험하여 자료를 얻는 방법.\n② 면접법 — 분석자가 직무 담당자와 면접하여 자료를 얻는 방법.\n③ 설문지법 — 담당자에게 설문지를 작성하게 하여 자료를 얻는 방법.\n④ 관찰법 — 분석자가 현장에서 담당자를 관찰하여 자료를 얻는 방법.\n⑤ 결정적 사건법 — 직무에서 크게 성공/실패한 사례 자료를 수집·분석.\n⑥ 녹화법 — 작업 장면을 녹화하여 자료를 얻는 방법.\n⑦ 작업일지법 — 담당자가 작성한 작업 일지로 자료를 얻는 방법."},
+{id:18,cat:"job",years:"2020-1",q:"한국직업사전 부가직업정보 중 작업강도 5단계를 쓰시오.",a:"① 아주 가벼운 작업  ② 가벼운 작업  ③ 보통작업  ④ 힘든작업  ⑤ 아주 힘든 작업"},
+{id:19,cat:"job",years:"2020-3",q:"한국직업사전 직무기능 중 사물의 세부사항 5가지를 쓰시오.",a:"① 설치  ② 정밀작업  ③ 제어조작  ④ 조작운전  ⑤ 수동조작  ⑥ 유지  ⑦ 투입-인출  ⑧ 단순작업"},
+{id:20,cat:"job",years:"2022-3",q:"한국직업사전 부가직업정보 중 정규교육·숙련기간·직무기능의 의미를 기술하시오.",a:"① 정규교육 — 해당 직무 수행에 필요한 정규교육 수준.\n② 숙련기간 — 해당 직무를 평균적 수준으로 수행하기 위해 필요한 교육·훈련 등의 기간.\n③ 직무기능 — 직무 수행 과정에서 자료·사람·사물과 맺는 관계의 특성."},
+{id:21,cat:"job",years:"2022-2",q:"한국직업사전 직무기능 중 사람과 관련된 세부사항 5가지를 쓰시오.",a:"① 자문  ② 협의  ③ 교육  ④ 감독  ⑤ 오락제공  ⑥ 설득  ⑦ 말하기-신호  ⑧ 서비스 제공"},
+{id:22,cat:"job",years:"2022-2 / 2021-3",q:"한국직업사전 직무기능 중 자료와 관련된 세부사항 5가지를 쓰시오.",a:"① 종합  ② 조정  ③ 분석  ④ 수집  ⑤ 계산  ⑥ 기록  ⑦ 비교"},
+{id:23,cat:"job",years:"2023-2 / 2020-4",q:"한국직업사전 부가직업정보 중 육체활동의 구분 5가지를 쓰시오.",a:"균형감각 / 시각 / 청각 / 언어력 / 손사용 / 웅크림"},
+{id:24,cat:"job",years:"2021-1 / 2024-1",q:"한국직업사전에 수록된 부가직업정보 5가지를 쓰시오.",a:"① 작업강도  ② 작업환경  ③ 작업장소  ④ 육체활동  ⑤ 정규교육  ⑥ 숙련기간\n(설명형) 정규교육-직무 수행에 필요한 일반적 교육수준 / 숙련기간-평균 수준 수행에 필요한 숙련기간 / 직무기능-사람·사물·자료와 관계된 특성"},
+{id:25,cat:"job",years:"2023-1",q:"직무기능 중 '자료' 기능의 설명을 보고 해당 기능을 쓰는 문제(예시).",a:"조정 — 데이터 분석에 기초하여 시간·장소·작업순서·활동 등을 결정.\n분석 — 조사하고 평가한다(대안적 행위의 제시 포함).\n수집 — 자료·사람·사물에 관한 정보를 수집·대조·분류.\n계산 — 사칙연산 실시(수를 세는 것은 제외).\n기록 — 데이터를 옮겨 적거나 입력·표시.\n비교 — 쉽게 관찰되는 기능적·구조적 특성을 판단."},
+{id:26,cat:"job",years:"2024-2",q:"직무기능 표(자료·사람·사물) 빈칸 채우기.",a:"[자료] 0 종합 / 1 조정 / 2 분석 / 3 수집 / 4 계산 / 5 기록 / 6 비교\n[사람] 0 자문 / 1 협의 / 2 교육 / 3 감독 / 4 오락제공 / 5 설득 / 6 말하기-신호 / 7 서비스제공\n[사물] 0 설치 / 1 정밀작업 / 2 제어조작 / 3 조작운전 / 4 수동조작 / 5 유지 / 6 투입-인출 / 7 단순작업"},
+{id:27,cat:"job",years:"2022-2",q:"한국직업사전 작업강도 빈칸 채우기.",a:"① 아주 가벼운 작업 — 최고 4kg을 들어올리고 때때로 장부·소도구 등을 운반.\n② 보통 작업 — 최고 20kg을 들어올리고 10kg 정도를 빈번히 운반.\n③ 힘든 작업 — 최고 40kg을 들어올리고 20kg 정도를 빈번히 운반."},
+{id:28,cat:"classify",years:"2019-1",q:"한국표준산업분류의 세 가지 분류기준을 쓰시오.",a:"① 산출물의 특성\n② 투입물의 특성\n③ 생산활동의 일반적 결합형태(생산공정)"},
+{id:29,cat:"classify",years:"2020-1 / 2019-3 / 2022-2 / 2024-2",q:"한국표준직업분류에서 직업으로 보지 않는 활동 6가지를 쓰시오.",a:"① 이자·임대료 등의 수입\n② 연금법·고용보험법 등에 의한 수입\n③ 경마·경륜·복권 등에 의한 수입\n④ 예금·적금의 인출\n⑤ 가사활동\n⑥ 사회 수용시설 내 경제활동\n⑦ 수형자의 강제노동"},
+{id:30,cat:"classify",years:"2024-1",q:"한국표준직업분류에서 직업으로 규명되기 위한 요건 3가지를 쓰고 설명하시오.",a:"① 계속성 — 주기적/계속적으로 행하며, 계속할 의지와 가능성이 있어야 한다.\n② 경제성 — 경제적 거래 관계가 성립하는 활동이어야 한다.\n③ 윤리성과 사회성 — 비윤리적·반사회적 활동이어서는 안 된다.\n④ 비속박성 — 속박된 상태에서 이루어지는 행위여서는 안 된다."},
+{id:31,cat:"classify",years:"2022-3",q:"한국표준직업분류의 분류원칙 중 포괄적 업무·다수직업 종사자의 분류원칙을 순서대로 쓰시오.",a:"① 포괄적 업무 분류원칙 — 주된 직무 우선원칙 → 최상급 직능수준 우선원칙 → 생산업무 우선원칙.\n② 다수직업 종사자 분류원칙 — 취업시간 우선의 원칙 → 수입 우선의 원칙 → 조사 시 최근의 직업 원칙."},
+{id:32,cat:"classify",years:"2023-3",q:"한국표준직업분류에서 직업분류의 일반원칙 2가지를 쓰고 설명하시오.",a:"① 포괄성의 원칙 — 모든 직업은 직업 분류에 포함되어야 한다.\n② 배타성의 원칙 — 동일·유사한 직무는 같은 단위 직업으로 분류되어야 한다."},
+{id:33,cat:"classify",years:"2022-1 / 2021-3 / 2019-2",q:"다수직업 종사자의 분류원칙을 순서대로 쓰고 설명하시오.",a:"① 취업시간 우선의 원칙 — 취업 시간이 가장 긴 직업으로 분류.\n② 수입 우선의 원칙 — 시간으로 분류하기 어려우면 수입·임금이 높은 직업으로 분류.\n③ 조사 시 최근의 직업 원칙 — 시간·수입으로 결정 불가 시 조사 시점 가장 최근 직업으로 분류."},
+{id:34,cat:"classify",years:"2023-1 / 2020-4 / 2020-3 / 2020-2",q:"포괄적 업무 분류원칙 3가지를 설명하시오.",a:"① 주된 직무 우선 원칙 — 여러 직무 수행 시 가장 주된 직업으로 분류.\n② 최상급 직능수준 우선 원칙 — 가장 높은 직무능력을 필요로 하는 일로 분류.\n③ 생산업무 우선 원칙 — 생산·공급이 함께 이루어지면 생산으로 분류."},
+{id:35,cat:"classify",years:"2022-3 / 2021-2 / 2023-2",q:"산업분류 결정방법 중 생산단위 활동형태 3가지를 설명하시오.",a:"① 주된 산업활동 — 생산된 재화/제공된 서비스 중 부가가치가 가장 큰 활동.\n② 부차적 산업활동 — 주된 산업활동 이외의 재화 생산·서비스 제공 활동.\n③ 보조활동 — 회계·창고·운송 등 주된·부차적 산업활동을 지원하는 활동."},
+{id:36,cat:"classify",years:"2022-2 / 2021-1 / 2020-2 / 2020-1 / 2024-2 / 2024-1",q:"한국표준산업분류 개요 중 산업·산업활동·산업활동 범위·산업분류·통계단위의 정의를 쓰시오.",a:"① 산업 — 유사한 산업활동에 종사하는 생산단위의 집합.\n② 산업활동 — 노동·자본·자원 등을 투입하여 재화/서비스를 생산·제공하는 일련의 활동과정.\n③ 산업활동의 범위 — 영리·비영리 활동은 포함하되 가사활동은 제외.\n④ 산업분류 — 생산단위의 생산활동을 유사성에 따라 체계적으로 분류한 것.\n⑤ 통계단위 — 통계 작성을 위해 정보를 수집·분석할 관찰/분석단위(기업체·지역·활동유형·사업체 단위)."},
+{id:37,cat:"classify",years:"2021-2",q:"한국표준직업분류에서 직무 유사성의 판단기준 4가지를 쓰시오.",a:"지식 / 경험 / 기능 / 직무수행자가 입직하기 위해 필요한 요건"},
+{id:38,cat:"classify",years:"2020-4",q:"한국표준산업분류에서 산업분류의 적용원칙을 쓰시오.",a:"① 산출물·투입물·생산공정을 모두 고려하여 분류한다.\n② 대분류를 결정한 후 중·소·세·세세 단위로 분류한다.\n③ 산업활동이 결합된 경우 생산단위의 주된 활동으로 분류한다."},
+{id:39,cat:"classify",years:"2023-3",q:"한국표준산업분류에서 산업 결정방법 4가지를 쓰시오.",a:"① 생산단위의 산업활동은 주된 산업활동의 종류에 따라 결정(부가가치 크기, 측정 곤란 시 산출액).\n② 적합하지 않으면 종업원 수·노동시간·임금·설비 정도로 결정.\n③ 계절에 따라 산업이 달라지면 조사대상기간 중 산출액이 많았던 활동으로 분류.\n④ 휴업·청산 중이면 영업/청산 이전 산업으로, 설립 중이면 개시하는 산업으로 결정."},
+{id:40,cat:"classify",years:"2023-2 / 2021-1",q:"한국표준직업분류와 직능수준의 관계 빈칸 채우기.",a:"관리자 — 제4직능수준 또는 제3직능수준 필요.\n판매종사자 — 제2직능수준 필요.\n장치·기계조작 및 조립 종사자 — 제2직능수준 필요.\n군인 — 제2직능수준 이상 필요.\n단순노무직 — 제1직능수준."},
+{id:41,cat:"labor",years:"2022-3 / 2020-1 / 2019-3",q:"내부 노동시장의 형성요인과 장점을 각각 3가지씩 쓰시오.",a:"[형성요인] 숙련의 특수성 / 현장훈련 / 기업 내의 관습\n[장점] 우수한 인적자원 확보·유지 / 승진·배치전환을 통한 동기 유발 / 인적자원 확보·동기유발을 통한 생산성 향상"},
+{id:42,cat:"labor",years:"2023-2",q:"내부 노동시장의 형성요인 3가지를 쓰고 설명하시오.",a:"① 숙련의 특수성 — 기록·문서로 전수 불가능한 숙련이 축적되며 내부노동시장을 형성.\n② 현장훈련 — 문서화되지 않은 노하우가 현장에서만 전수되어 내부노동시장을 형성.\n③ 관습 — 기업 내 고유 관습이 차별화된 근로조건·환경을 만들어 내부노동시장을 형성."},
+{id:43,cat:"labor",years:"2022-3",q:"산업별 임금격차가 발생하는 원인 4가지를 쓰시오.",a:"① 지리적 요인  ② 산업의 종류  ③ 노동조합의 존재 여부  ④ 보상적 임금  ⑤ 노동 생산성의 차이"},
+{id:44,cat:"labor",years:"2019-3",q:"산업별 임금격차가 발생하는 원인 3가지를 쓰고 설명하시오.",a:"① 노동조합의 존재 여부 — 강력한 노조가 있는 산업은 급여가 높다.\n② 보상적 임금 — 근무환경·조건이 열악하면 금전적 보상이 이루어진다.\n③ 노동생산성의 차이 — 생산성이 높은 산업은 임금이 높다."},
+{id:45,cat:"practice",years:"2022-3",q:"인터넷을 이용한 사이버상담의 필요성 6가지를 쓰시오.",a:"① 접근이 용이하다.\n② 익명성이 보장되어 솔직한 표현이 가능하다.\n③ 대면이 아니므로 심리적 부담이 덜하다.\n④ 상담 중 자료 탐색이 용이하다.\n⑤ 가명을 이용해 상담 사례 소개가 가능하다.\n⑥ 내담자 주도로 자기 성찰 능력을 기를 수 있다."},
+{id:46,cat:"practice",years:"2023-2 / 2020-4",q:"틴슬레이와 브래들리가 제시한 검사 해석의 4단계를 설명하시오.",a:"① 해석 준비하기 — 검사 결과와 내담자 정보를 어떻게 연관 지을지 검토.\n② 내담자 준비시키기 — 내담자가 결과를 수용할 수 있도록 준비.\n③ 결과 전달하기 — 내담자가 이해할 수 있도록 결과를 전달.\n④ 추후활동 — 결과를 잘 이해했는지 확인하고 의견을 주고받음."},
+{id:47,cat:"practice",years:"2022-3",q:"틴슬레이와 브래들리가 제시한 검사 결과 검토의 2단계를 쓰고 설명하시오.",a:"① 이해 단계 — 규준을 참조하여 검사점수의 의미를 충분히 이해.\n② 통합 단계 — 이해를 통해 얻은 정보와 상담자가 수집한 다른 정보들을 통합."},
+{id:48,cat:"job",years:"2023-2 / 2021-3",q:"직무평가 방법 3가지를 쓰고 설명하시오.",a:"① 서열법 — 직무의 상대적 중요도에 따라 순위를 정한다.\n② 분류법 — 사전 작성한 등급표에 따라 직무에 등급을 부여한다.\n③ 점수법 — 직무 구성요소별 중요도에 점수를 부여 후 합산해 가치를 평가한다.\n④ 요소비교법 — 핵심 직무를 기준으로 비교하여 상대적 가치를 결정한다."},
+{id:49,cat:"theory",years:"2023-2 / 2020-4",q:"수퍼(Super)의 직업발달(진로발달) 5단계를 쓰고 설명하시오.",a:"① 성장기 — 가정·학교에서 자아개념을 발달시키는 시기.\n② 탐색기 — 여러 활동으로 자아를 검증하고 맞는 직업을 탐색.\n③ 확립기 — 적합한 직업을 선택하여 기반을 다지는 시기.\n④ 유지기 — 직업에 안착하여 안정된 생활을 유지.\n⑤ 쇠퇴기 — 은퇴를 준비하며 새 직업·활동을 모색."},
+{id:50,cat:"theory",years:"2024-2",q:"수퍼가 제안한 발달적 직업상담의 6단계를 쓰시오.",a:"① 문제 탐색 및 자아개념 묘사\n② 심층적 탐색\n③ 자아수용 및 자아통찰\n④ 현실검증\n⑤ 태도와 감정의 탐색과 처리\n⑥ 의사결정"},
+{id:51,cat:"theory",years:"2019-2",q:"수퍼의 경력개발 단계 중 성장기의 3단계를 쓰고 설명하시오.",a:"① 환상기 — 아동적 욕구가 지배적이며 직업에 대한 환상을 갖는 단계.\n② 흥미기 — 흥미에 따라 직업을 선택하는 단계.\n③ 능력기 — 조건을 고려하며 능력을 중요하게 생각하는 단계."},
+{id:52,cat:"theory",years:"2024-1",q:"수퍼가 제시한 흥미 사정 기법 3가지를 쓰고 설명하시오.",a:"① 표현된 흥미 — 활동·직업에 대한 호/불호를 표현하도록 하는 기법.\n② 조작된 흥미 — 활동·직업에 시간을 어떻게 보내는지/참여수준을 관찰하는 기법.\n③ 조사된 흥미 — 내담자와 특정 직업 종사자 간 흥미의 유사점을 비교하는 기법."},
+{id:53,cat:"theory",years:"2020-4 / 2022-3",q:"발달적 직업상담에서 수퍼가 진단 대신 사용한 '평가' 3가지를 설명하시오.",a:"① 문제의 평가 — 내담자가 겪는 어려움·상담 기대를 평가.\n② 개인의 평가 — 심리검사·사례연구로 내담자 상태를 분석·평가.\n③ 예언 평가 — 직업적 성공·만족 가능성을 예언."},
+{id:54,cat:"theory",years:"2019-3",q:"발달적 직업상담 기법 중 진로 자서전과 의사결정 일기를 각각 설명하시오.",a:"① 진로 자서전 — 내담자가 과거에 어떤 의사결정을 했는지 자유롭게 기술하는 자료.\n② 의사결정 일기 — 진로 자서전의 보충 역할로, 내담자의 일상적 의사결정 방식을 작성."},
+{id:55,cat:"test",years:"2023-2 / 2023-1 / 2021-2 / 2020-1 / 2019-1 / 2024-2",q:"집단 내 규준 3가지를 쓰고 설명하시오.",a:"① 백분위 점수 — 개인이 집단에서 차지하는 상대적 위치. 100개 구간으로 나누어 어디에 속하는지 측정.\n② 표준 점수 — 평균으로부터 떨어진 거리를 측정.\n③ 표준 등급(스테나인) — 원점수를 9개 구간으로 나누어 어디에 속하는지 측정."},
+{id:56,cat:"test",years:"2021-3 / 2021-1 / 2019-2",q:"규준 참조 검사와 준거 참조 검사를 각각 예를 들어 설명하시오.",a:"① 규준참조검사 — 개인 점수를 다른 사람 점수와 비교하는 상대평가. 예) 각종 심리검사.\n② 준거참조검사 — 개인 점수를 기준 점수와 비교하는 절대평가. 예) 국가 자격시험."},
+{id:57,cat:"test",years:"2023-2 / 2021-3 / 2020-2 / 2024-1",q:"직업심리검사의 신뢰도를 추정하는 방법 3가지를 쓰고 설명하시오.",a:"① 검사-재검사 신뢰도 — 동일인에게 동일 검사를 시간 간격을 두고 두 번 실시, 점수 간 상관으로 추정.\n② 동형 검사 신뢰도 — 유사한 검사를 함께 실시하여 두 점수 간 상관으로 추정.\n③ 반분 신뢰도(내적합치도) — 한 검사를 두 부분으로 나누어 각 부분 간 결과를 비교해 추정."},
+{id:58,cat:"test",years:"2019-3 / 2024-2",q:"반분 신뢰도를 추정하기 위한 방법 3가지를 쓰고 설명하시오.",a:"① 전후 반분법 — 문항을 전반부와 후반부로 나눈다.\n② 기우 반분법 — 문항을 짝수와 홀수로 나눈다.\n③ 짝진 임의 배치법 — 유사한 두 문항씩 짝을 지은 후 각 짝에서 한 문항을 임의로 선택해 양분."},
+{id:59,cat:"test",years:"2020-4",q:"극대수행검사와 습관적 수행검사를 설명하고 각 대표 유형 2가지를 쓰시오.",a:"① 극대수행검사 — 제한시간 내 최대 능력 발휘를 요구. 예) 지능검사, 적성검사, 성취도 검사.\n② 습관적 수행검사 — 일상의 습관적 행동에 정직하게 응답하도록 요구. 예) 성격검사, 흥미검사, 태도검사."},
+{id:60,cat:"test",years:"2020-2 / 2024-2",q:"측정의 기본 단위인 척도의 4가지 유형을 쓰고 설명하시오.",a:"① 명명척도 — 측정 대상 간 숫자의 차이(구분)만 있는 척도.\n② 서열척도 — 차이와 순위관계 정보가 있는 척도.\n③ 등간척도 — 차이·순위·간격이 포함된 척도.\n④ 비율척도 — 차이·순위·간격·비율을 모두 포함하는 척도."},
+];
+
+QUESTIONS.push(
+{id:61,cat:"test",years:"2023-1 / 2021-2 / 2021-1",q:"신뢰도의 종류와 신뢰도에 영향을 주는 요인을 각각 3가지씩 쓰시오.",a:"[종류] 검사-재검사 신뢰도 / 동형 검사 신뢰도 / 반분 신뢰도\n[영향요인] 개인차 / 문항 수 / 문항 반응 수 / 검사유형 / 신뢰도 추정방법"},
+{id:62,cat:"test",years:"2022-2 / 2019-3",q:"심리검사 사용의 윤리적 문제와 관련해 주의할 사항 6가지를 쓰시오.",a:"① 심리검사가 시대에 뒤떨어질 수 있음을 인정한다.\n② 피검사자가 이해하기 쉬운 용어를 사용한다.\n③ 피검사자의 비밀을 보장한다.\n④ 검사 결과는 목적에 맞게 제한적으로 사용한다.\n⑤ 타당도·신뢰도가 높은 검사를 활용한다.\n⑥ 적절한 훈련을 받은 사람이 실시한다."},
+{id:63,cat:"test",years:"2023-1 / 2020-3",q:"검사-재검사 신뢰도에 영향을 미치는 요인 4가지를 쓰시오.",a:"① 검사와 재검사 사이의 시간 간격\n② 검사가 시행되는 환경의 변화\n③ 응답자의 속성 변화\n④ 응답자가 검사를 치른 경험"},
+{id:64,cat:"test",years:"2023-2 / 2020-4 / 2020-3 / 2019-3",q:"구성타당도의 유형에 속하는 타당도 2가지를 쓰고 설명하시오.",a:"① 수렴 타당도 — 그 속성과 관계 있는 변인들과 얼마나 높은 상관을 갖는지.\n② 변별 타당도 — 그 속성과 관계 없는 변인들과 얼마나 낮은 상관을 갖는지.\n③ 요인분석법 — 문항 간 상관을 분석해 상관 높은 문항끼리 묶는 방법."},
+{id:65,cat:"labor",years:"2023-2",q:"야호다의 박탈이론에 따른 고용(취업)의 잠재효과 5가지를 쓰시오.",a:"① 시간의 조직화\n② 사회적 접촉\n③ 공동의 목표 참여\n④ 의미 있는 활동\n⑤ 사회적 정체감과 지위 확보"},
+{id:66,cat:"theory",years:"2023-2 / 2021-1 / 2019-2",q:"보딘이 제시한 직업문제의 심리적 원인 5가지를 쓰고 설명하시오.",a:"① 의존성 — 스스로 결정하지 못하고 타인에게 의존.\n② 자아갈등 — 자아의 내적 갈등으로 직업을 선택하지 못함.\n③ 정보의 부족 — 정보가 부족해 직업을 결정하지 못함.\n④ 선택에 대한 불안 — 타인의 반응 때문에 불안해 선택에 어려움.\n⑤ 확신의 부족 — 문제 없는 선택을 했으나 확신이 부족."},
+{id:67,cat:"theory",years:"2020-3 / 2023-3",q:"보딘의 정신역동적 3단계 직업상담 과정을 쓰고 설명하시오.",a:"① 탐색과 계약설정 — 내담자의 욕구·정신역동성을 탐색하고 상담을 구조화.\n② 중대한 결정 — 성격에 맞는 직업을 선택할지, 직업에 맞게 성격을 변화시킬지 결정.\n③ 변화를 위한 노력 — 결정한 방향으로 변화하도록 노력."},
+{id:68,cat:"theory",years:"2023-2",q:"형태주의(게슈탈트) 상담의 상담기법 4가지를 쓰시오.",a:"① 꿈작업  ② 빈의자 기법  ③ 과장하기  ④ 신체자각  ⑤ 언어자각  ⑥ 욕구와 감정의 자각"},
+{id:69,cat:"theory",years:"2019-3 / 2024-2",q:"게슈탈트 상담의 상담기법 3가지를 쓰고 설명하시오.",a:"① 빈의자 기법 — 빈의자에 상대가 있다고 가정하고 감정을 표현하게 한다.\n② 꿈작업 — 꿈이 현재 일어난 일인 것처럼 연기하게 한다.\n③ 과장하기 — 말·행동을 과장하게 하여 욕구·감정을 명확히 이해시킨다.\n④ 신체자각 — 욕구·감정을 신체 감각으로 자각하게 한다.\n⑤ 언어자각 — 언어를 통해 자신의 욕구를 알게 한다."},
+{id:70,cat:"theory",years:"2020-1 / 2024-1 / 2023-3",q:"내담자중심 상담에서 직업상담사가 갖추어야 할 3가지 기본 태도를 설명하시오.",a:"① 일치성(진실성) — 내담자에게 자신의 생각을 솔직히 표현하고 인정.\n② 무조건적 수용 — 비판하지 않고 수용·존중.\n③ 공감적 이해 — 상담자의 위치를 유지하며 내담자의 경험을 자신의 것처럼 이해."},
+{id:71,cat:"theory",years:"2022-2",q:"형태주의 상담의 목표 6가지를 쓰시오.",a:"① 자기 인식을 증가시킨다.\n② 자신의 경험에 대한 주체가 자신이라는 태도를 형성한다.\n③ 타인의 권리를 침해하지 않으면서 욕구를 충족하는 기술·가치관을 형성한다.\n④ 모든 감각이 더 잘 인식되도록 한다.\n⑤ 행동의 결과를 수용하고 책임이 자신에게 있음을 인정한다.\n⑥ 외적 지지에서 내적 지지로 바꾸도록 돕는다."},
+{id:72,cat:"labor",years:"2023-2 / 2021-1",q:"기혼여성의 경제활동 참가율을 낮게 하는 요인 6가지를 쓰시오.",a:"① 배우자 소득의 증가\n② 많은 자녀의 수\n③ 높은 사회 전체 실업률\n④ 낮은 자녀의 연령\n⑤ 열악한 법적·제도적 환경\n⑥ 낮은 여성의 교육수준"},
+{id:73,cat:"theory",years:"2023-2 / 2023-1 / 2020-2",q:"실존주의 상담에서 내담자의 궁극적 관심사 4가지를 쓰고 설명하시오.",a:"① 삶의 의미성 — 인간은 삶을 통해 존재 의미를 발견해야 한다.\n② 죽음과 비존재 — 삶과 죽음은 분리될 수 없으며 언젠가 존재하지 않을 것을 안다.\n③ 자유와 책임 — 인간은 자유로운 존재이며 선택할 능력과 책임이 있다.\n④ 고립 — 실존적 고립에 직면할 때 타인과 성숙한 관계를 맺을 수 있다.\n(진실성·무의미성 등도 가능)"},
+{id:74,cat:"theory",years:"2024-2",q:"실존주의 상담에서 인간 본성에 대한 기본 가정 4가지를 쓰시오.",a:"① 인간은 자각하는 능력을 가지고 있다.\n② 인간은 항상 변화하는 존재이다.\n③ 인간은 선택의 자유와 책임을 지닌 존재이다.\n④ 인간은 스스로를 만들어 가는 존재이며, 자신을 초월할 수 있다.\n⑤ 인간은 장래에 무존재가 될 운명을 자각하는 존재이다."},
+{id:75,cat:"theory",years:"2023-2",q:"홀랜드 모델의 해석 차원 중 일관성·변별성·정체성을 설명하시오.",a:"① 일관성 — 어떤 유형 쌍은 다른 쌍보다 더 많은 공통점을 갖는다.\n② 변별성 — 특정 성격유형은 어떤 유형과는 유사하고 어떤 유형과는 차별화된다.\n③ 정체성 — 개인에게는 목표·흥미·재능, 환경에는 투명성·안정성 등을 의미."},
+{id:76,cat:"theory",years:"2023-2",q:"고트프레드슨의 직업 관련 개인발달 4단계를 쓰시오.",a:"① 힘과 크기 지향성\n② 성역할 지향성\n③ 사회적 가치 지향성\n④ 내적·고유한 자아 지향성"},
+{id:77,cat:"labor",years:"2023-1 / 2021-3 / 2019-3 / 2019-2",q:"노동수요 탄력성 공식과 영향 요인 3가지를 쓰시오.",a:"[공식] 노동수요 탄력성 = | 노동수요 변화율 ÷ 임금 변화율 |\n[요인] ① 총생산비에서 노동비용이 차지하는 비중 ② 다른 생산요소의 노동에 대한 대체 가능성 ③ 노동 외 생산요소의 공급 탄력성 ④ 생산품에 대한 수요의 탄력성"},
+{id:78,cat:"labor",years:"2023-1 / 2020-3",q:"임금의 하방경직성의 의미를 설명하고 원인 5가지를 쓰시오.",a:"[의미] 한번 인상된 임금이 경제여건 변화에도 하락하지 않고 현재 수준을 유지하는 현상.\n[원인] 최저임금제 / 강력한 노동조합의 존재 / 장기 고용계약 / 연공급제 임금 형태 / 노동자의 화폐환상"},
+{id:79,cat:"practice",years:"2023-1 / 2020-1",q:"관계수립을 위한 기본 상담기술 6가지를 쓰시오.",a:"공감 / 적극적 경청 / 명료화 / 반영 / 수용 / 요약과 재진술 / 감정이입 / 환언 / 직면"},
+{id:80,cat:"theory",years:"2023-1 / 2022-1 / 2024-1 / 2023-3",q:"행동주의 직업상담의 불안감소기법과 학습촉진기법의 대표 방법을 각 2가지씩 쓰고 설명하시오.",a:"[불안감소기법]\n· 체계적 둔감법 — 이완 후 불안 위계 목록에 따라 점진적으로 노출해 불안을 감소.\n· 홍수법 — 두려운 자극에 장시간 지속 노출하여 두려움을 제거.\n· 역조건 형성 / 혐오치료 등.\n[학습촉진기법]\n· 강화 — 바람직한 직업결정에 긍정/부정 반응을 보여 촉진.\n· 대리학습(모델링) — 타인의 진로결정 행동을 관찰하게 해 학습 촉진.\n· 변별학습 — 검사도구로 직업선택·결정 능력을 변별·비교."},
+{id:81,cat:"theory",years:"2021-2",q:"행동주의 상담의 적응행동 증진기법 3가지를 설명하시오.",a:"① 강화 — 긍정/부정 반응으로 바람직한 행동을 강화.\n② 변별학습 — 검사도구로 직업결정 능력을 변별·비교.\n③ 사회적 모델링·대리학습 — 타인 행동의 관찰·모방으로 학습 촉진.\n④ 행동조성 — 행동을 단계별로 세분화해 단계마다 강화.\n⑤ 상표제도(토큰경제) — 바람직한 행동마다 보상."},
+{id:82,cat:"theory",years:"2022-2 / 2021-3 / 2020-4",q:"윌리암슨의 직업상담 문제유형 4가지를 쓰고 설명하시오.",a:"① 진로 무선택 — 선택해 본 적 없거나 무엇을 선택할지 모름.\n② 불확실한 선택 — 선택했으나 확신이 없음.\n③ 어리석은 선택 — 특성·흥미를 고려하지 않고 특권·갈망으로 선택.\n④ 흥미와 적성의 불일치 — 흥미·적성에 모순되는 직업을 선택."},
+{id:83,cat:"theory",years:"2024-2",q:"윌리암슨이 심리검사 해석 시 사용하는 상담기법 3가지를 쓰고 설명하시오.",a:"① 설득 — 결과를 종합하여 올바른 결정을 하도록 설득.\n② 설명 — 결과를 이해할 수 있도록 설명.\n③ 직접 충고 — 상담자의 솔직한 생각을 직접적으로 전달."},
+{id:84,cat:"practice",years:"2019-2",q:"집단상담의 형태 3가지를 쓰고 설명하시오.",a:"① 성장 집단 — 내담자의 내적·외적 성장을 위한 집단.\n② 교육 집단 — 내담자의 교육을 목표로 하는 집단.\n③ 상담 집단 — 문제해결·자아발견 등을 목표로 하는 집단."},
+{id:85,cat:"practice",years:"2019-1",q:"톨버트가 제시한 집단상담 과정에서 나타나는 활동유형 3가지를 쓰시오.",a:"자기탐색 / 상호작용 / 개인적 정보의 검토 및 목표와의 연결 / 직업적·교육적 정보의 획득과 검토 / 의사결정"},
+{id:86,cat:"practice",years:"2023-1 / 2020-4 / 2019-1 / 2024-2",q:"집단상담의 장점 6가지를 쓰시오.",a:"① 시간과 비용이 경제적이다.\n② 사회성을 기를 수 있다.\n③ 직업 성숙도가 낮은 내담자에게 적합하다.\n④ 타인을 관찰하여 학습하는 효과가 있다.\n⑤ 개인 집중도가 낮아 부담감을 감소시킨다.\n⑥ 구체적 경험·현실 검증의 기회가 제공된다."},
+{id:87,cat:"practice",years:"2020-4",q:"집단상담의 단점 3가지를 쓰시오.",a:"① 다수 내담자로 비밀 보장이 어렵다.\n② 상담을 위한 집단 구성이 어렵다.\n③ 모든 구성원이 만족하는 상담이 어렵다.\n④ 심층적 내면 심리 상담에 부적합하다."},
+{id:88,cat:"theory",years:"2023-1",q:"로저스 인간중심 상담의 철학적 가정 4~5가지를 쓰시오.",a:"① 인간은 가치를 지닌 유일한 존재이다.\n② 인간은 성장력을 가지고 있다.\n③ 인간은 선한 존재이다.\n④ 인간은 자유로운 존재이다.\n⑤ 인간은 자신의 진로를 선택할 권리가 있다."},
+{id:89,cat:"job",years:"2023-1",q:"직무분석 방법 중 면접법의 장점과 단점을 각 2가지씩 쓰시오.",a:"[장점] 정신적 활동까지 파악 가능 / 질문지법보다 응답률 높음 / 추가질문으로 오류 감소 / 유연한 조사 가능.\n[단점] 주관적 의견 반영으로 정확도 영향 / 시간·노력 많이 필요 / 익명성 미보장 / 수량화 정보 얻기 어려움."},
+{id:90,cat:"job",years:"2023-3",q:"직무분석 방법 중 질문지법의 장점과 단점을 각 2가지씩 쓰시오.",a:"[장점] 시간·비용 경제적 / 주관적 개입 배제 / 집단 경향 파악 유용 / 다수 참여 가능.\n[단점] 읽고 쓰기 어려운 응답자 활용 곤란 / 질문지 외 자료 수집 곤란 / 응답 검증 불가 / 무응답률 높을 수 있음."},
+{id:91,cat:"job",years:"2023-3",q:"실험실 연구의 장점 3가지를 쓰시오.",a:"① 특정 변인의 조작·통제가 가능하다.\n② 변인 간 인과관계 파악이 용이하다.\n③ 동일 실험을 다양한 조건에서 반복하여 정확한 결과를 얻을 수 있다.\n(단점) 일반화 위험 / 표본 대표성 문제 / 인위적 조작 가능 변인에만 유용."},
+{id:92,cat:"test",years:"2023-1 / 2021-1 / 2023-3",q:"예언 타당도와 동시(공인) 타당도를 예를 들어 설명하시오.",a:"① 예언타당도 — 점수가 미래 행위를 얼마나 잘 예측하는가. 예) 적성검사 고득점자가 입사 후 우수 실적.\n② 동시(공인)타당도 — 이미 검증된 검사와 유사 검사를 실시해 두 점수를 비교. 예) 토익 고득점자가 새 영어시험도 고득점.\n[차이] 동시타당도는 현재 상태, 예언타당도는 미래에 관한 타당도."},
+{id:93,cat:"test",years:"2023-3",q:"준거타당도가 직업상담사에게 중요한 이유와 실제연구에서 계수가 낮은 이유.",a:"[중요한 이유] 직업 성공 가능성을 예측 / 공정한 인사관리를 가능하게 함.\n[실제연구에서 낮은 이유] 외부요인 통제 곤란 / 내적 타당도가 낮음 / 독립변인 효과와 가외변인 효과 구분 곤란."},
+{id:94,cat:"test",years:"2023-1 / 2020-1 / 2020-2",q:"심리검사 선정 시 고려사항 3가지를 쓰시오.",a:"① 신뢰도·타당도가 검증된 검사를 선정한다.\n② 검사 목적에 부합하는 검사를 선정한다.\n③ 간편성·경제성 등 실용성을 고려한다.\n④ 내담자도 선택에 포함한다.\n⑤ 문제점을 파악한 후 검사를 선정한다."},
+{id:95,cat:"test",years:"2021-2",q:"예비문항 제작 시 고려해야 할 5가지를 쓰시오.",a:"① 문항의 적절성 — 특정집단에 유리하게 제작 금지.\n② 문항의 난이도 — 수준에 맞게 적절히 구성.\n③ 문항의 구조화 — 내용이 구체적·명확.\n④ 문항의 동기유발 — 학습동기를 유발.\n⑤ 문항의 참신성 — 기존 검사와 중복되지 않는 새 문항.\n⑥ 문항의 중립성 — 불쾌감을 주는 문항 배제."},
+{id:96,cat:"classify",years:"2023-1 / 2021-3 / 2020-3 / 2020-4",q:"통계단위의 산업을 결정하는 방법 2가지를 쓰시오.",a:"① 주된 산업활동의 종류에 따라 결정.\n② 계절에 따라 달라지면 조사기간 중 산출액이 많았던 산업으로 결정.\n③ 휴업·청산 중이면 영업/청산 이전 산업, 설립 중이면 개시 산업으로 결정."},
+{id:97,cat:"test",years:"2023-1 / 2022-1 / 2020-3 / 2020-1 / 2019-2 / 2023-3",q:"홀랜드 직업흥미검사의 6가지 유형을 쓰시오.",a:"① 현실형  ② 탐구형  ③ 예술형  ④ 사회형  ⑤ 진취형(기업형)  ⑥ 관습형"},
+{id:98,cat:"practice",years:"2021-1",q:"인지적 명확성이 부족한 내담자의 유형 5가지를 쓰시오.",a:"① 단순 오정보  ② 복잡한 오정보  ③ 구체성의 결여  ④ 강박적 사고  ⑤ 양면적 사고"},
+{id:99,cat:"practice",years:"2022-2 / 2020-3",q:"상담목표 설정 시 유의사항 5가지를 쓰시오.",a:"① 내담자가 바라고 원하는 것을 목표로 한다.\n② 상담자의 기술과 양립 가능해야 한다.\n③ 구체적이어야 한다.\n④ 실현 가능해야 한다.\n⑤ 기한이 있어야 한다."},
+{id:100,cat:"practice",years:"2020-3 / 2023-3",q:"초기면담 수행 시 상담자가 유의해야 할 사항 4가지를 쓰시오.",a:"① 내담자와 만나기.\n② 상담 전 사례자료 검토하기.\n③ 초기 목표를 명확히 제시하기.\n④ 비밀 유지에 대해 설명하기.\n⑤ 상담 시 필수질문 확인하기."}
+);
+
+QUESTIONS.push(
+{id:101,cat:"practice",years:"2021-2",q:"내담자의 행동을 이해·해석하는 데 기본이 되는 상담기법 6가지를 쓰시오.",a:"가정 사용하기 / 의미있는 질문하기 / 전이된 오류 정정하기 / 분류 및 재구성하기 / 저항감 재인식하기 / 근거없는 믿음 확인하기 / 왜곡된 사고 확인하기 / 반성의 장 마련하기 / 변명에 초점 맞추기"},
+{id:102,cat:"job",years:"2022-2 / 2019-3",q:"직무분석 방법 중 결정적 사건법의 단점 3가지를 쓰시오.",a:"① 주관적 의견 개입으로 사건이 왜곡될 수 있다.\n② 직무를 전체적으로 반영하지 못하고 일부만 강조될 수 있다.\n③ 정확한 조사를 위해 특별히 훈련받은 사람이 필요하다.\n④ 시간과 노력이 많이 든다.\n⑤ 일상적 업무 정보가 배제될 수 있다."},
+{id:103,cat:"job",years:"2020-3 / 2024-1",q:"직무분석 자료 활용의 용도 4~6가지를 쓰시오.",a:"구인·채용 / 직무평가 기초자료 / 승진·배치 / 교육·훈련 / 직무수행평가·인사고과 / 작업환경 개선·산업안전 / 직무 분류 / 인원 수급 계획"},
+{id:104,cat:"theory",years:"2022-2",q:"벡의 인지치료에서 인지적 오류의 유형 4가지를 쓰시오.",a:"① 흑백논리  ② 선택적 추상화  ③ 과잉 일반화  ④ 개인화  ⑤ 의미의 확대·축소  ⑥ 임의적 추론"},
+{id:105,cat:"theory",years:"2022-2",q:"벡의 인지적 상담에서 인지적 오류 3가지를 설명하시오.",a:"① 흑백논리 — 이분법적으로 사고할 때 생기는 오류.\n② 선택적 추상화 — 부정적 일부를 근거로 결론 내려 전체에 적용.\n③ 과잉 일반화 — 특정 사건의 결과를 무관한 상황에 적용."},
+{id:106,cat:"theory",years:"2019-3",q:"부정적 자동적 사고에 빠진 내담자에게 벡의 인지행동 상담에서 사용할 방법 3가지를 설명하시오.",a:"① 언어적 기법 — 비합리적 신념을 논박하여 언어를 변화.\n② 정서적 기법 — 합리적 정서를 상상하도록 함.\n③ 행동적 기법 — 목표행동을 부여·실행하게 하여 신념체계를 변화."},
+{id:107,cat:"test",years:"2022-2 / 2020-1",q:"부정적 심리검사 결과를 내담자에게 통보하는 방법 4가지를 쓰시오.",a:"① 충격받지 않도록 주의하여 설명.\n② 전문용어·통계 숫자보다 일상적 용어 사용.\n③ 적절한 해석과 함께 설명.\n④ 결과 유출이 없도록 비밀보장."},
+{id:108,cat:"test",years:"2022-2 / 2020-1",q:"심리검사의 사용목적 3가지를 쓰고 설명하시오.",a:"① 개인적 기능 — 자기이해를 증진해 성공 가능성 높은 진로를 선택하도록 돕는다.\n② 예측적 기능 — 성격·적성을 파악해 수행능력을 예측.\n③ 진단적 기능 — 문제 원인을 파악하고 해결.\n④ 조사적 기능 — 집단의 성향을 조사해 특징을 규명."},
+{id:109,cat:"labor",years:"2022-2 / 2020-1",q:"노동수요 Ld=5,000-2W, 임금 W=2,000원일 때 임금탄력성의 절댓값과 근로자 수입을 구하시오.",a:"① 임금탄력성 = (ΔLd/ΔW)×(W/Ld). 기울기 ΔLd/ΔW = -2.\nW=2,000일 때 Ld=5,000-(2×2,000)=1,000.\n-2 × (2,000/1,000) = -4 → 절댓값 4.\n② 근로자 수입 = 노동수요 × 임금 = 1,000 × 2,000 = 2,000,000원."},
+{id:110,cat:"test",years:"2022-2 / 2019-3",q:"정규분포에서 벗어난 자료를 해결하기 위한 방법 3가지를 쓰고 설명하시오.",a:"① 완곡법 — 정규분포와 비슷하면 점수를 더하거나 빼서 정상분포 모양으로 만든다.\n② 절미법 — 꼬리가 작으면 한쪽으로 치우친 편포의 꼬리를 잘라낸다.\n③ 면적 환산법 — 각 점수의 백분위를 찾아 해당하는 Z점수를 찾는다."},
+{id:111,cat:"practice",years:"2022-2 / 2019-3 / 2019-1",q:"갤라트가 제시한 직업 의사결정 상담과정 8단계를 순서대로 쓰시오.",a:"목표의식 → 정보수집 → 대안의 열거 → 대안의 결과 예측 → 대안의 실현가능성 예측 → 가치평가 → 의사결정 → 평가 및 재투입"},
+{id:112,cat:"theory",years:"2020-4 / 2023-3",q:"인지·정서 상담(REBT)의 기본가정·기본개념·상담목표를 쓰시오.",a:"① 기본가정 — 인간은 합리적일 수도 비합리적일 수도 있으며, 문제는 비합리적 사고로 인해 생긴다.\n② 기본개념 — 문제 해결을 위해 상담자의 논박이 필요하며 ABCDEF 모델을 제시.\n③ 상담목표 — 비합리적 신념을 합리적 신념으로 변화시켜 문제를 해결."},
+{id:113,cat:"theory",years:"2022-2 / 2021-3 / 2021-2 / 2020-3 / 2020-2",q:"REBT의 ABCDEF의 의미를 쓰시오.",a:"A 선행사건 — 감정·행동에 영향을 미치는 사건.\nB 비합리적 신념 — 선행사건에 대한 비합리적 신념체계.\nC 결과 — 비합리적 신념으로 인한 부적응적 정서·행동적 결과.\nD 논박 — 비합리적 신념을 논리적으로 반박.\nE 효과 — 논박으로 합리적 신념으로 전환.\nF 새로운 감정 — 합리적 신념에서 비롯된 긍정적·수용적 감정."},
+{id:114,cat:"theory",years:"2021-1",q:"정리해고 후 무가치감·우울증에 빠진 사례를 ABCDEF 기법으로 설명하시오.",a:"A 선행사건 — 회사에서 정리해고를 당함.\nB 비합리적 신념 — 해고가 곧 자신이 무가치하다는 의미라는 신념.\nC 결과 — 우울증·자살 시도 등.\nD 논박 — 정리해고가 무가치함을 의미하지 않음을 논박.\nE 효과 — 우울감을 극복하고 자신을 재평가.\nF 새로운 감정 — 긍정적으로 평가하며 다시 구직활동."},
+{id:115,cat:"practice",years:"2022-2 / 2020-4",q:"직업상담사가 갖추어야 할 자질 5가지를 쓰시오.",a:"① 직업정보를 수집·분석·전달하는 능력.\n② 내담자를 파악하는 통찰력.\n③ 상담 지식·기술.\n④ 편견 없이 대하는 태도.\n⑤ 내담자를 존중하는 태도.\n⑥ 도덕성.\n⑦ 심리학적 지식.\n⑧ 노동시장·정책 지식 분석능력."},
+{id:116,cat:"practice",years:"2022-2",q:"내담자 이해를 위한 질적 측정도구 3가지를 쓰고 설명하시오.",a:"① 자기효능감 척도 — 과제를 어느 수준으로 수행할 수 있는지 스스로 판단.\n② 제노그램(가계도) — 가계도로 직업 인식·흥미를 파악.\n③ 직업카드 분류 — 선호·혐오·미결정으로 분류해 선호도 파악.\n④ 역할놀이 — 업무 상황 해결 과정을 관찰해 직업 관련 기술 파악."},
+{id:117,cat:"classify",years:"2022-1",q:"한국표준산업분류의 적용원칙 4가지를 쓰시오.",a:"① 산출물·투입물·생산공정을 함께 고려하여 분류.\n② 복합적 활동단위는 대분류 결정 후 중·소·세·세세분류로 결정.\n③ 산업활동이 결합되면 주된 활동에 따라 분류.\n④ 수수료·계약에 의한 단위는 자기계정·자기책임 단위와 동일 항목으로 분류."},
+{id:118,cat:"test",years:"2022-1",q:"스피어만의 지능 2요인설에서 2가지 요인을 쓰고 설명하시오.",a:"① 일반요인 — 모든 지적 활동에 포함된 단일한 추론능력.\n② 특수요인 — 특정 과제 수행에 포함된 여러 가지 능력."},
+{id:119,cat:"test",years:"2022-1",q:"검사-재검사 신뢰도의 단점 4가지를 쓰시오.",a:"① 이월효과  ② 성숙효과  ③ 반응 민감성  ④ 환경상의 변화"},
+{id:120,cat:"practice",years:"2022-1",q:"직업상담의 목적 5가지를 쓰시오.",a:"① 이미 선택한 진로 결정을 확실하게 한다.\n② 직업 목표를 명확하게 한다.\n③ 자신과 직업세계를 더 잘 이해하게 한다.\n④ 의사결정 능력을 길러준다.\n⑤ 능동적 태도를 갖도록 돕는다."},
+{id:121,cat:"theory",years:"2022-1",q:"정신분석에서 역전이의 의미와 해결책 3가지를 쓰시오.",a:"[의미] 상담자가 내담자에게 이전에 다른 사람에게 가졌던 감정을 갖게 되는 것.\n[해결방법] 자기분석을 한다 / 수퍼바이저의 지도·감독을 받는다 / 다른 전문가에게 상담을 위임한다."},
+{id:122,cat:"theory",years:"2022-1 / 2021-3 / 2019-2",q:"방어기제의 종류 3가지를 쓰고 설명하시오.",a:"① 억압 — 감정을 무의식으로 밀어 넣는 것.\n② 부정 — 현실을 무의식적으로 인정하지 않는 것.\n③ 합리화 — 그럴듯한 이유를 붙여 현실을 회피.\n(동일시·전위·투사·퇴행·승화 등)"},
+{id:123,cat:"theory",years:"2021-2",q:"정신분석 상담에서 불안의 3가지 유형을 쓰고 설명하시오.",a:"① 현실적 불안 — 실제적 위험을 지각함으로써 느끼는 불안.\n② 신경증적 불안 — 자아가 원초아를 통제하지 못할 때 발생.\n③ 도덕적 불안 — 원초아와 초자아의 갈등에서 생기는 양심에 대한 불안."},
+{id:124,cat:"test",years:"2022-1",q:"일반직업적성검사(GATB)에서 측정하는 적성 항목 3가지를 쓰고 설명하시오.",a:"① 지능 — 일반적인 학습능력을 검사.\n② 언어능력 — 언어를 이해·사용하는 능력을 검사.\n③ 수리능력 — 신속하게 계산하는 능력을 검사."},
+{id:125,cat:"labor",years:"2022-1 / 2021-2",q:"최저임금제의 기대효과 5가지를 쓰시오.",a:"① 산업간·계층간 임금격차 축소.\n② 노동자의 생활 안정.\n③ 경기 활성화.\n④ 노사분규 예방.\n⑤ 불필요한 임금 절감 경쟁 방지(경영 합리화).\n⑥ 고임금 경제효과 / 소득분배 개선 / 산업구조 고도화."},
+{id:126,cat:"theory",years:"2020-2",q:"의사교류분석 상담에서 역동적 자아상태 3가지를 쓰시오.",a:"부모 자아 / 성인 자아 / 어린이 자아"},
+{id:127,cat:"theory",years:"2022-1",q:"의사교류분석 상담의 제한점 3가지를 쓰시오.",a:"① 용어가 추상적이어서 실제 적용이 어렵다.\n② 어려운 개념이 많아 지적 능력이 낮은 내담자에게 부적합.\n③ 과학적 검증이 부족하다."},
+{id:128,cat:"theory",years:"2022-1 / 2019-2",q:"브레이필드가 제시한 직업정보의 기능 3가지를 쓰고 설명하시오.",a:"① 정보적 기능 — 직업정보를 제공해 지식을 늘리고 의사결정을 돕는다.\n② 재조정 기능 — 맞지 않는 직업을 선택했는지 재검토하게 한다.\n③ 동기화 기능 — 적극 참여하도록 목적의식을 부여·동기화한다."},
+{id:129,cat:"job",years:"2022-1",q:"공공직업정보의 특성 4가지를 쓰시오.",a:"① 무료인 경우가 많다.\n② 전체 산업·업종을 대상으로 한다.\n③ 직업정보를 지속적으로 제공한다.\n④ 다른 정보와 관련성이 높다."},
+{id:130,cat:"test",years:"2022-1 / 2020-1",q:"빈칸에 알맞은 타당도의 종류를 쓰시오.",a:"① 내용타당도 — 각 문항이 측정하려는 것을 재는지 자격을 갖춘 사람들이 판단.\n② 준거타당도 — 유형으로 공인타당도·예언타당도가 있음.\n③ 구성타당도 — 심리적 구인으로 분석·조작적 정의 후 점수가 그 구인으로 구성되었는지 검증.\n④ 안면타당도 — 일반인 관점에서 측정하려는 것을 재는 것처럼 보이는지에 관한 타당도."},
+{id:131,cat:"labor",years:"2022-1",q:"15세 이상 35,986천명, 비경제활동 14,716천명, 취업자 20,149천명일 때 실업률을 구하시오.",a:"경제활동인구 = 35,986 - 14,716 = 21,270천명.\n실업자 = 21,270 - 20,149 = 1,121천명.\n실업률 = 1,121 ÷ 21,270 × 100 = 5.3%"},
+{id:132,cat:"labor",years:"2022-1",q:"단가 100원·임금 150원, 생산함수가 주어질 때 이윤극대화 최적 고용량을 구하시오.",a:"한계생산가치 = 한계생산량 × 단가(100원). 완전경쟁시장에서 이윤극대화는 단위임금 = 한계생산가치일 때.\n노동투입량 4일 때 한계생산가치가 150원으로 단위임금과 같으므로 최적 고용량은 4단위."},
+{id:133,cat:"practice",years:"2021-3 / 2019-2",q:"생애진로사정의 구조 중 진로사정의 3가지 부분을 설명하시오.",a:"① 일의 경험 — 일을 하며 좋았던 것·싫었던 것을 사정.\n② 교육 또는 훈련과정 — 교육·훈련 중 좋았던 것·싫었던 것을 사정.\n③ 여가시간 — 여가시간에 어떤 활동을 하는지 사정."},
+{id:134,cat:"labor",years:"2020-4 / 2024-1",q:"고용동향 자료로 실업률·임금근로자 수·경제활동참가율을 구하시오.",a:"(1) 실업률: 경제활동인구=21,270천명, 실업자=1,121천명 → 1,121÷21,270×100 = 5.27%\n(2) 임금근로자 수 = 상용 6,113 + 임시 4,481 + 일용 2,225 = 12,819천명\n(3) 경제활동참가율 = 경제활동인구 ÷ 15세 이상 인구 × 100 = 21,270÷35,986×100 ≈ 59.1%"},
+{id:135,cat:"practice",years:"2020-2 / 2019-3 / 2024-1",q:"생애진로사정을 통해 얻을 수 있는 정보 3가지를 쓰시오.",a:"① 교육·훈련 경험\n② 의존적인지·독립적인지의 성향\n③ 자신의 기술·능력에 대한 자기평가"},
+{id:136,cat:"practice",years:"2020-1 / 2019-3",q:"생애진로사정의 구조 4가지를 설명하시오.",a:"① 진로사정 — 직업·교육·훈련경험·관심사 등을 사정.\n② 전형적인 하루 — 의존적/독립적, 임의적/체계적인지 파악.\n③ 강점과 장애 — 강점에 중점을 두고 장애 극복 방안을 찾음.\n④ 요약 — 스스로 알게 된 사실을 요약해 자기인식을 증진."},
+{id:137,cat:"practice",years:"2021-2",q:"흥미를 사정하는 목적 5가지를 쓰시오.",a:"여가선호와 직업선호 구별 / 자기인식 발전 / 직업탐색 조장 / 직업대안 규명 / 직업·교육상 불만족 원인 규명"},
+{id:138,cat:"theory",years:"2022-1",q:"취업 실패를 인생 실패로 여기는 내담자 호소문 사례 — 진단·기법·5단계·예측 문제.",a:"1) 진단·기법 — 취업 실패=인생 실패라는 비합리적 사고. 엘리스의 REBT 기법이 바람직.\n2) 5단계 — A: Y회사 지원 / B: 합격 못하면 더 이상 채용 없고 부모 실망 / C: 실패할까 봐 숨막힘 / D: 마지막 기회 아님, 좋은 회사=인생 성공 아님 논박 / E: 마지막 기회 아님 인지, 다른 진로 목표 / (F: 정서적 안정·새 동기).\n3) 예측 문제 6가지 — 무력감 / 우울 / 불안·초조 / 불면증 / 좌절감 / 심한 스트레스."},
+{id:139,cat:"practice",years:"2021-3",q:"진로시간전망 원형검사에서 시간전망 개입의 3가지 차원을 설명하시오.",a:"① 변별성 — 미래를 현실처럼 느끼고 목표를 설정하는 것.\n② 통합성 — 미래와 현재를 연결하여 미래 인식을 증진.\n③ 방향성 — 미래를 낙관적으로 구성하는 것."},
+{id:140,cat:"practice",years:"2019-3",q:"진로시간전망 검사지의 주요 용도 3가지를 쓰고 설명하시오.",a:"① 미래에 대한 희망을 갖도록 한다.\n② 미래가 실제인 것처럼 느끼게 한다.\n③ 목표의식을 갖도록 촉구한다.\n④ 진로의식을 높인다 / 미래 계획 연습 / 현재 행동을 미래 결과와 연계."}
+);
+
+QUESTIONS.push(
+{id:141,cat:"labor",years:"2021-3",q:"A·B노동조합 기업의 노동수요 임금탄력성을 구하고 교섭력이 강한 곳을 설명하시오.",a:"임금탄력성 = | 노동수요 변화율 ÷ 임금 변화율 |\nA기업 = |(-10,000/20,000)/(1,000/4,000)| = 2\nB기업 = |(3,000/30,000)/(-1,000/6,000)| = 0.6\n교섭력이 강한 것은 B노동조합. 임금탄력성이 낮을수록 임금 인상에도 고용 감소가 적어 교섭력이 커진다."},
+{id:142,cat:"labor",years:"2021-2 / 2024-2",q:"비수요부족 실업에 해당하는 대표 실업 3가지를 쓰고 설명하시오.",a:"① 마찰적 실업 — 직업 탐색 과정에서 정보 부족으로 일시적 발생(자발적).\n② 구조적 실업 — 경제구조 변화·지역 간 수급 불균형으로 발생(비자발적·장기적).\n③ 계절적 실업 — 기후·계절 변화로 노동수요 변동이 심한 부문에서 발생(일시적).\n(↔ 경기적 실업 = 수요부족 실업)"},
+{id:143,cat:"practice",years:"2021-2 / 2020-3",q:"흥미를 사정할 때 사용할 수 있는 사정기법 3가지를 쓰고 설명하시오.",a:"① 흥미평가기법 — 알파벳에 따라 흥밋거리를 기입하게 해 흥미를 사정.\n② 직업선호도검사 — 홀랜드 흥미유형과 연관지어 흥미를 사정.\n③ 직업카드분류법 — 선호군·혐오군·미결정으로 분류.\n④ 작업경험 분석 — 과거 작업들을 분석해 선호도를 찾음."},
+{id:144,cat:"test",years:"2021-2 / 2024-1",q:"성격 5요인 모델의 5요인을 열거하고 설명하시오.",a:"① 외향성 — 타인과 상호작용을 원하는 정도.\n② 호감성 — 타인과 좋은 관계를 유지하려는 성향.\n③ 성실성 — 사회적 규범·원칙을 지키려는 정도.\n④ 정서적 불안정성 — 정서적으로 안정된 정도.\n⑤ 경험에 대한 개방성 — 다양한 경험·환경에 대한 관심·호기심."},
+{id:145,cat:"test",years:"2019-1",q:"노동부 성격검사의 성격 5요인을 쓰시오.",a:"외향성 / 호감성 / 성실성 / 정서적 불안정성 / 경험에 대한 개방성"},
+{id:146,cat:"test",years:"2021-2",q:"동일명 유사 심리검사 결과가 다르게 나타나는 원인 5가지를 쓰시오.",a:"검사절차상의 차이 / 검사환경상의 차이 / 응답자 속성의 변화 / 검사 난이도의 차이 / 문항속성의 차이"},
+{id:147,cat:"labor",years:"2021-1",q:"근로자 수별 생산량 표(임금 10,000원, 의자 2,000원)로 평균생산량·최적 고용·한계생산량을 구하시오.",a:"(1) 근로자 5명일 때 평균생산량 = 30 ÷ 5 = 6개.\n(2) 이윤극대화는 임금 = 한계생산물가치일 때. 3명째 한계생산 5개 × 2,000 = 10,000원 = 임금. 따라서 고용 3명, 이때 한계생산량 5개."},
+{id:148,cat:"test",years:"2021-1 / 2020-3",q:"스트롱 직업흥미검사의 척도 3가지를 쓰시오.",a:"① GOT(일반직업분류) — 흥미에 대한 포괄정보, 홀랜드 6유형.\n② BIS(기본흥미척도) — 6유형에 대한 구체 정보, 특정 활동·주제 흥미 평가.\n③ PSS(개인특성척도) — 업무·학습 스타일, 리더십, 모험심 선호도."},
+{id:149,cat:"test",years:"2021-1",q:"동시 타당도와 예측 타당도의 의미와 차이점을 설명하시오.",a:"① 동시 타당도 — 인정받은 검사와 유사 검사를 실시해 두 검사 간 상관계수를 측정.\n② 예측 타당도 — 결과가 수검자의 미래를 얼마나 잘 예측하는가.\n③ 차이점 — 동시타당도는 현재, 예측타당도는 미래에 관한 타당도."},
+{id:150,cat:"practice",years:"2021-1",q:"직무 스트레스로 직장에서 발생할 수 있는 행동양식 5가지를 쓰시오.",a:"지각·결근이 잦아진다 / 업무 성과가 낮아진다 / 이직을 고려한다 / 직무 중 사고가 발생하기 쉽다 / 우울감을 느낀다"},
+{id:151,cat:"theory",years:"2021-1 / 2024-2",q:"체계적 둔감화의 의미와 3가지 절차를 설명하시오.",a:"[의미] 불안·공포가 있는 내담자가 점차 둔감해지도록 하는 치료기법.\n① 근육 이완 훈련 — 심호흡으로 근육 긴장을 푼다.\n② 불안 위계 목록 작성 — 불안 정도가 작은 것부터 큰 순으로 작성.\n③ 둔감화 — 작은 것부터 점차 노출해 둔감해지도록 한다."},
+{id:152,cat:"practice",years:"2021-1",q:"상담자가 줄 수 있는 언어적·비언어적 표현을 각 3가지씩 쓰시오.",a:"[언어적] 적절한 호칭 / 즉시 응답 / 유머 / 적극적 경청 / 재진술 / 질문 / 정보제공 / 공감적 이해 / 요약 / 명료화\n[비언어적] 눈 맞춤 / 몸 기울이기 / 미소 / 끄덕임 / 신체적 접촉"},
+{id:153,cat:"test",years:"2020-4 / 2023-3",q:"성능검사와 성향검사에 해당하는 검사를 각 3가지씩 쓰시오.",a:"① 성능검사 — 지능검사, 적성검사, 성취도 검사.\n② 성향검사 — 성격검사, 흥미검사, 태도검사(적응·동기·투사·도덕성검사 등)."},
+{id:154,cat:"test",years:"2020-4 / 2023-3",q:"현재 사용되는 흥미검사의 종류 5~6가지를 쓰시오.",a:"① 직업선호도 검사 ② 청소년 직업흥미 검사 ③ 스트롱 흥미검사 ④ 스트롱-캠벨 흥미검사 ⑤ 경력의사결정 검사 ⑥ 쿠더 직업흥미검사"},
+{id:155,cat:"labor",years:"2020-4",q:"생산성 임금제에 근거하여 2008년 적정임금상승률을 구하시오.",a:"부가가치 노동생산성 = (생산량 × 단가) ÷ 노동투입량.\n2007년 = (100×10)÷40 = 25원.\n2008년 = (120×12)÷50 = 28.8원.\n생산성 상승률 = (28.8-25)÷25×100 = 15.2%. 따라서 적정임금상승률 = 15.2%."},
+{id:156,cat:"labor",years:"2020-3 / 2023-3",q:"한계노동비용과 이윤극대화 노동공급·임금을 구하시오.",a:"(1) 노동공급 7단위 한계노동비용 = (7×10)-(6×8) = 70-48 = 22 → (표 기준) = 12로 계산.\n(2) 이윤극대화는 한계노동비용 = 한계수입생산일 때. 노동공급 8단위에서 한계노동비용이 한계수입생산(26)과 같으므로 노동공급 8단위, 임금 12."},
+{id:157,cat:"practice",years:"2020-2",q:"구조조정 당한 실직자의 심리적 특성과 지도방법을 각 2가지씩 쓰시오.",a:"[심리적 특성] 자존감이 낮아진다 / 우울증에 빠질 수 있다.\n[지도방법] 논박으로 비합리적 신념에서 벗어나게 한다 / 새 직업을 탐색하도록 정보를 제공한다."},
+{id:158,cat:"test",years:"2020-2",q:"점수 7, 평균 10, 표준편차 5.77일 때 표준점수 Z를 구하시오.",a:"Z = (원점수 - 평균) ÷ 표준편차 = (7-10) ÷ 5.77 = -0.52\n(참고: T점수 = Z × 10 + 50)"},
+{id:159,cat:"job",years:"2020-2",q:"고용정보를 미시정보와 거시정보로 나누어 각 2가지씩 쓰시오.",a:"① 미시정보 — 구인·구직 정보, 취업박람회.\n② 거시정보 — 경제·산업동향, 노동시장·고용실업 동향."},
+{id:160,cat:"labor",years:"2020-2",q:"내부노동시장이론·이중노동시장이론·인적자본론을 각각 설명하시오.",a:"① 내부노동시장이론 — 기업 규모 확대·노조 성장으로 내부에 노동시장이 형성되어 내부·외부 시장으로 분리.\n② 이중노동시장이론 — 1차·2차 노동시장으로 나뉘며 근로조건이 다르고 노동력 이동이 제한적.\n③ 인적자본론 — 인간을 투자로 생산성을 향상시킬 수 있는 자본으로 보는 이론."},
+{id:161,cat:"labor",years:"2020-2",q:"임금 7,000→8,000원일 때 A·B기업의 임금탄력성을 구하고 협상 가능성을 설명하시오.",a:"A기업 = |(-1/20×100)/(1,000/7,000×100)| = |-5%/14%| = 0.36\nB기업 = |(-2/20×100)/(1,000/7,000×100)| = |-10%/14%| = 0.71\n임금탄력성이 낮을수록 교섭력이 크다. 따라서 탄력성이 낮은 A기업이 협상 가능성이 높다."},
+{id:162,cat:"labor",years:"2020-2 / 2019-1",q:"임금 상승 시 노동공급곡선이 우상향한다는 명제의 참·거짓을 판정하고 설명하시오.",a:"불확실하다. 여가가 열등재면 우상향하지만, 여가가 정상재면 임금이 일정 수준까지는 대체효과가 소득효과보다 커서 우상향하다가, 소득효과가 대체효과보다 커지면 후방굴절형이 된다."},
+{id:163,cat:"practice",years:"2020-1",q:"직업상담의 과정 5단계를 쓰시오.",a:"관계형성 → 진단 → 목표설정 → 개입 → 평가"},
+{id:164,cat:"test",years:"2020-1",q:"역량검사와 속도검사에 대해 설명하시오.",a:"① 역량검사 — 시간 제한 없이 어려운 문제로 구성, 문제해결 능력을 측정.\n② 속도검사 — 시간 제한이 있고 대체로 쉬운 문제로 구성, 숙련도를 측정."},
+{id:165,cat:"labor",years:"2020-1",q:"고용동향 자료로 실업률·경제활동참가율·무급가족종사자·취업자 비율을 구하시오.",a:"(1) 실업률 = (350-190-140)÷350×100 = 5.71%\n(2) 경제활동참가율 = 350÷(350+150)×100 = 70%\n(3) 무급가족종사자 = 140-90 = 50천명\n(4) 취업자 비율 = (190+140)÷(350+150)×100 = 66%"},
+{id:166,cat:"labor",years:"2024-1",q:"고용률 50%, 비경제활동 400명, 실업자 50명일 때 실업률을 구하시오.",a:"취업자를 A라 하면 50% = A÷(400+50+A)×100 → A = 450명.\n실업률 = 50÷(50+450)×100 = 10%"},
+{id:167,cat:"practice",years:"2019-3 / 2024-1",q:"자기보고식 가치 사정하기에서 가치 사정법 6가지를 쓰시오.",a:"존경하는 사람 기술하기 / 백일몽 말하기 / 과거 선택 회상하기 / 자유시간과 금전의 사용계획 조사하기 / 체크목록 가치에 순위 매기기 / 절정경험 조사하기"},
+{id:168,cat:"theory",years:"2019-3",q:"REBT에서 비합리적 신념의 뿌리인 3가지 당위성을 예를 들어 설명하시오.",a:"① 자신에 대한 당위성 — \"나는 반드시 성공해야 한다.\"\n② 타인에 대한 당위성 — \"타인은 반드시 나를 공정하게 대해야 한다.\"\n③ 세상에 대한 당위성 — \"세상은 내가 원하는 방향으로 진행되어야 한다.\""},
+{id:169,cat:"labor",years:"2019-3",q:"K제과점 자료로 한계생산·한계수입생산·이윤극대화 채용 인원을 구하시오.",a:"(1) 근로자 2명 한계생산 = 18-10 = 8개.\n(2) 근로자 3명 한계수입생산 = (23-18)×10,000 = 50,000원.\n(3) 이윤극대화는 단위임금 = 한계수입생산일 때. 2명째 (18-10)×10,000 = 80,000원 = 임금. 따라서 채용 2명, 케이크 생산량 18개."},
+{id:170,cat:"labor",years:"2019-3",q:"고용동향 자료로 임금근로자 수를 구하시오.",a:"임금근로자 = 상용 6,113 + 임시 4,481 + 일용 2,225 = 12,819천명\n(또는) 취업자 20,148 - 비임금근로자(5,645+1,684) = 12,819천명"},
+{id:171,cat:"theory",years:"2019-3",q:"특성-요인 직업상담의 과정을 순서대로 쓰고 설명하시오.",a:"① 분석 — 흥미·적성·지식 등 자료를 수집·분석.\n② 종합 — 분석 자료를 요약·정리.\n③ 진단 — 문제와 해결방법을 찾기 위해 진단.\n④ 예측(처방) — 대안을 찾고 성공 가능성을 예측.\n⑤ 상담 — 바람직한 방향으로 변화하도록 조언·상담.\n⑥ 추수지도 — 목표달성을 위해 지속적으로 지도."},
+{id:172,cat:"job",years:"2019-2",q:"직무기술서에 포함되는 정보 5가지를 쓰시오.",a:"① 직무 명칭·급수·임금 등 직무 정의\n② 직무의 목적·사명(직무 요약)\n③ 사용하는 기계·장비\n④ 사용하는 원재료\n⑤ 최종 산물을 만들어 내는 방식\n⑥ 감독 형태·작업의 양과 질 지침\n⑦ 작업자의 과제·활동\n⑧ 물리·심리·정서적 환경"},
+{id:173,cat:"test",years:"2019-2",q:"직업적응이론에 기초해 개발된 직업적응 관련 검사도구 3가지를 쓰시오.",a:"MIQ(미네소타 중요도 질문지) / MSQ(미네소타 직무만족 질문지) / MJDQ(미네소타 직무기술 질문지)"},
+{id:174,cat:"labor",years:"2019-2",q:"인적자본 투자의 대상 3가지를 쓰고 설명하시오.",a:"① 정규교육(학교교육) — 가장 중요한 투자 대상. 기본 지식·기술을 습득.\n② 건강 — 좋은 건강을 유지하면 일정 노동수준을 유지.\n③ 이주 — 능력을 발휘할 수 있는 곳으로 이주해 수익·생산성을 높임."},
+{id:175,cat:"theory",years:"2019-1",q:"실존주의 상담의 양식 세계 3가지를 쓰고 설명하시오.",a:"① 고유세계 — 개인이 자기 자신과 맺는 관계로 이루어진 개인적 세계.\n② 공존세계 — 타인과 관계를 맺는 사회적 세계.\n③ 영적세계 — 영적 믿음으로 이루어지는 세계."},
+{id:176,cat:"theory",years:"2019-1 / 2024-2",q:"로(Roe)의 수직 차원 6단계를 분류하시오.",a:"고급 전문관리 / 중급 전문관리 / 준전문관리 / 숙련직 / 반숙련직 / 비숙련직"},
+{id:177,cat:"labor",years:"2022-2 / 2019-2",q:"연령대별 고용률을 계산하고 비교 분석하시오.",a:"(1) 30~50세 고용률 = 16,859 ÷ 22,982 × 100 = 73.4%\n(2) 29세 이하 고용률 = 3,957 ÷ 9,780 × 100 = 40.5%. 30~50세는 가장이 많아 계속 일하는 반면 29세 이하는 학생·취업준비자가 많아 고용률이 낮다."},
+{id:178,cat:"test",years:"2021-3 / 2019-1",q:"준거 장면에 따른 검사 분류 3가지를 쓰고 설명하시오.",a:"① 모의장면 검사 — 실제 같은 장면을 만들어 행동을 관찰·평가.\n② 실제장면 검사 — 실제 생활에서 어떻게 행동하는지 관찰.\n③ 경쟁장면 검사 — 작업 장면 상황을 제시해 경쟁적으로 해결하게 함.\n④ 축소상황 검사 — 과제·직무를 축소 제시해 수행을 관찰."},
+{id:179,cat:"test",years:"2019-1",q:"검사 결과에 영향을 미치는 강화효과·기대효과·코칭효과를 설명하시오.",a:"① 강화효과 — 검사자가 물질적·언어적 보상을 하면 결과에 영향.\n② 기대효과 — 검사자가 기대를 표현하면 결과에 영향.\n③ 코칭효과 — 검사 관련 설명·지시 등의 코칭이 결과에 영향."},
+{id:180,cat:"theory",years:"2019-1",q:"교류분석 상담에서 기본적인 생활자세 4가지를 쓰고 설명하시오.",a:"① 자기긍정·타인긍정 — 원만하고 긍정적인 생활자세.\n② 자기긍정·타인부정 — 타인에게 공격적인 자세.\n③ 자기부정·타인긍정 — 자기비하적 자세.\n④ 자기부정·타인부정 — 파괴적·비관적 자세."},
+{id:181,cat:"labor",years:"2019-1",q:"A국 생산가능인구 100만명, 경제활동참가율 70%, 실업률 10%일 때 실업자 수를 구하시오.",a:"경제활동인구 = 100만 × 0.7 = 70만명.\n실업자 = 70만 × 0.1 = 7만명."},
+{id:182,cat:"labor",years:"2019-1",q:"이중노동시장이론에서 1차 노동시장의 특징 5가지를 쓰시오.",a:"이직률이 낮다 / 실업률이 낮다 / 지각·결근률이 낮다 / 교육 기회가 많다 / 경력에 따라 임금·지위 향상 / 높은 임금 / 좋은 근로조건 / 체계적 노무관리 / 고용 안정 / 공평한 진급 기회"},
+{id:183,cat:"labor",years:"2019-1 / 2024-2",q:"던롭의 노사관계 시스템에서 3주체와 규제하는 환경적 여건 3가지를 쓰시오.",a:"[3주체] 노동자·노동조합 / 사용자·사용자 단체 / 정부기관\n[환경적 여건] ① 기술적 특성 ② 시장 또는 예산제약 ③ 각 주체의 세력관계"},
+{id:184,cat:"job",years:"2024-1",q:"경력개발 프로그램의 초기·중기·말기 단계별 예시를 1가지씩 쓰시오.",a:"① 초기 — 경력워크숍, 인턴십, 후견인 프로그램, 종업원 오리엔테이션.\n② 중기 — 경력상담, 직무순환제도, 전문분야 교육훈련.\n③ 말기 — 은퇴 전 프로그램, 변형 근무제."},
+{id:185,cat:"test",years:"2024-1",q:"심리검사 시 검사자가 준수해야 하는 윤리강령 3가지를 쓰시오.",a:"① 검사가 시대에 뒤떨어질 수 있음을 인정한다.\n② 신뢰도·타당도가 높은 검사를 선택한다.\n③ 채점·해석에 적절한 근거를 갖춘다."},
+{id:186,cat:"job",years:"2023-3",q:"직무기능 중 사물 기능의 설명을 보고 해당 기능을 쓰는 문제(예시).",a:"설치 — 기계·설비의 준비, 공구 설치·조정, 정밀도 측정 등.\n정밀작업 — 표준치 달성을 위해 신체·공구로 가공·조종·이동, 공구를 조정.\n제어조작 — 기계·설비를 시동·정지·제어, 진행 중 기계를 조정.\n조작운전 — 일정 경로를 따라 조작·안내되는 기계를 시동·정지·제어.\n수동조작 — 신체·공구로 가공·조정·이동(어느 정도 판단력 요구).\n유지 — 기능을 관찰하고 계기 제어장치를 조정(판단력 불요).\n투입-인출 — 기계·장비에 자재를 삽입·하역.\n단순작업 — 정리·운반·처리(판단력 불요)."},
+{id:187,cat:"labor",years:"2023-3",q:"비정규직 근로자 빈칸 채우기.",a:"① 한시적 근로자 — 근로계약기간을 정한 자, 또는 비자발적 사유로 계속근무를 기대할 수 없는 자.\n② 기간제 근로자 — 기간의 정함이 있는 근로계약을 체결한 자.\n③ 시간제 근로자 — 근로시간이 짧은 비상근 파트타임 근로자.\n④ 비전형 근로자 — 파견·용역·특수고용·가정 내·일일(호출) 근로자 등."}
+);
+
+
+/* ===== category meta ===== */
+const CAT = {
+  theory:{name:"상담이론", color:"#147A57"},
+  practice:{name:"상담실무", color:"#2A7DA0"},
+  test:{name:"심리검사", color:"#6A5AB0"},
+  job:{name:"직무·직업정보", color:"#B07A2E"},
+  classify:{name:"직업·산업분류", color:"#566876"},
+  labor:{name:"노동시장", color:"#C2603F"},
+};
+
+/* ===== storage (safe) ===== */
+const KEY="jc2_progress_v1";
+let memory={done:[], quiz:{t:0,ok:0,no:0}};
+function load(){
+  try{const r=localStorage.getItem(KEY); if(r) memory=Object.assign(memory,JSON.parse(r));}catch(e){}
+  memory.done=new Set(memory.done||[]);
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify({done:[...memory.done],quiz:memory.quiz}));}catch(e){}
+}
+load();
+
+/* ===== state ===== */
+let mode="list", catFilter="all", search="", hideDone=false, allExpanded=false;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+/* ===== helpers ===== */
+function filtered(){
+  const s=search.trim().toLowerCase();
+  return QUESTIONS.filter(q=>{
+    if(catFilter!=="all" && q.cat!==catFilter) return false;
+    if(s && !((q.q+" "+q.a+" "+q.id).toLowerCase().includes(s))) return false;
+    return true;
+  });
+}
+function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+/* ===== progress ring ===== */
+function updateRing(){
+  const pct=Math.round(memory.done.size/QUESTIONS.length*100);
+  $("#ringPct").textContent=pct;
+  const C=2*Math.PI*19;
+  $("#ringArc").style.strokeDashoffset=C*(1-pct/100);
+}
+
+/* ===== chips ===== */
+function buildChips(){
+  const wrap=$("#chips");
+  const counts={}; QUESTIONS.forEach(q=>counts[q.cat]=(counts[q.cat]||0)+1);
+  let html=`<button class="chip all ${catFilter==='all'?'on':''}" data-cat="all">전체 <span class="ct">${QUESTIONS.length}</span></button>`;
+  for(const k in CAT){
+    html+=`<button class="chip ${catFilter===k?'on':''}" data-cat="${k}" style="--cc:${CAT[k].color}">
+      <span class="dot"></span>${CAT[k].name} <span class="ct">${counts[k]||0}</span></button>`;
+  }
+  wrap.innerHTML=html;
+  $$("#chips .chip").forEach(c=>c.onclick=()=>{
+    catFilter=c.dataset.cat; buildChips(); render();
+  });
+}
+
+/* ===== LIST ===== */
+function renderList(){
+  const items=filtered().filter(q=>!(hideDone && memory.done.has(q.id)));
+  $("#listCount").textContent=items.length;
+  const box=$("#list");
+  if(!items.length){ box.innerHTML=emptyHTML(); return; }
+  box.innerHTML=items.map(q=>{
+    const done=memory.done.has(q.id), open=allExpanded;
+    const c=CAT[q.cat];
+    return `<article class="q ${done?'done':''} ${open?'open':''}" style="--cc:${c.color}" data-id="${q.id}">
+      <div class="q-head" data-act="toggle">
+        <div class="q-num">${q.id}</div>
+        <div class="q-body">
+          <div class="q-meta"><span class="tag">${c.name}</span><span class="years">${q.years}</span></div>
+          <div class="q-text">${esc(q.q)}</div>
+        </div>
+        <button class="q-star" data-act="star" aria-label="암기 표시">${done?'★':'☆'}</button>
+      </div>
+      <button class="toggle" data-act="toggle">
+        답안 ${open?'접기':'보기'}
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="ans"><div class="ans-in"><span class="alabel">모범답안</span>\n${esc(q.a)}</div></div>
+    </article>`;
+  }).join("");
+  // measure heights for open state
+  $$("#list .q.open").forEach(setAnsHeight);
+}
+function setAnsHeight(q){
+  const ans=q.querySelector(".ans");
+  ans.style.maxHeight=q.classList.contains("open")?ans.querySelector(".ans-in").scrollHeight+30+"px":"0px";
+  q.querySelector(".toggle").childNodes[0].textContent="답안 "+(q.classList.contains("open")?"접기 ":"보기 ");
+}
+$("#list").addEventListener("click",e=>{
+  const btn=e.target.closest("[data-act]"); if(!btn) return;
+  const card=btn.closest(".q"); const id=+card.dataset.id;
+  if(btn.dataset.act==="star"){
+    toggleDone(id);
+    card.classList.toggle("done"); card.querySelector(".q-star").textContent=memory.done.has(id)?"★":"☆";
+    if(hideDone && memory.done.has(id)){ card.style.opacity=0; setTimeout(renderList,200); }
+    return;
+  }
+  card.classList.toggle("open"); setAnsHeight(card);
+});
+
+/* ===== shared: toggle done ===== */
+function toggleDone(id){
+  if(memory.done.has(id)) memory.done.delete(id); else memory.done.add(id);
+  save(); updateRing();
+}
+
+/* ===== FLASHCARD ===== */
+let fcList=[], fcIdx=0, fcSkip=false;
+function buildFcList(keepIdx){
+  let arr=filtered();
+  if(fcSkip) arr=arr.filter(q=>!memory.done.has(q.id));
+  fcList=arr;
+  if(!keepIdx) fcIdx=0;
+  if(fcIdx>=fcList.length) fcIdx=Math.max(0,fcList.length-1);
+}
+function renderCard(){
+  buildFcList(false);
+  $("#fcTotal").textContent=fcList.length;
+  const card=$("#fcCard");
+  if(!fcList.length){
+    $("#fcNow").textContent=0;
+    $("#fcFrontMeta").innerHTML=""; $("#fcQ").innerHTML="<span style='color:#9aa49d;font-size:.95rem'>해당 조건의 문항이 없습니다.</span>";
+    $("#fcA").textContent=""; card.classList.remove("flipped");
+    return;
+  }
+  showCard();
+}
+function showCard(){
+  const q=fcList[fcIdx], c=CAT[q.cat];
+  const card=$("#fcCard"); card.classList.remove("flipped");
+  card.style.setProperty("--cc",c.color);
+  $("#fcNow").textContent=fcIdx+1;
+  $("#fcFrontMeta").innerHTML=`<span class="tag" style="background:${c.color}">${c.name}</span><span class="years">${q.years}</span><span class="fc-side">문제 #${q.id}</span>`;
+  $("#fcQ").textContent=q.q;
+  $("#fcA").innerHTML=`<span class="fc-anum">#${q.id} 모범답안</span>\n\n${esc(q.a)}`;
+  const done=memory.done.has(q.id);
+  const mk=$("#fcMark"); mk.classList.toggle("done",done); mk.textContent=done?"암기됨 ★":"암기 ✓";
+  $("#fcPrev").disabled=fcIdx===0; $("#fcNext").disabled=fcIdx===fcList.length-1;
+}
+$("#fcCard").onclick=()=>{ if(fcList.length) $("#fcCard").classList.toggle("flipped"); };
+$("#fcPrev").onclick=()=>{ if(fcIdx>0){fcIdx--; showCard();} };
+$("#fcNext").onclick=()=>{ if(fcIdx<fcList.length-1){fcIdx++; showCard();} };
+$("#fcMark").onclick=e=>{ e.stopPropagation(); if(!fcList.length) return;
+  const id=fcList[fcIdx].id; toggleDone(id);
+  if(fcSkip && memory.done.has(id)){ renderCard(); } else { showCard(); }
+};
+$("#fcShuffle").onclick=()=>{ buildFcList(false); for(let i=fcList.length-1;i>0;i--){const j=(Math.random()*(i+1))|0;[fcList[i],fcList[j]]=[fcList[j],fcList[i]];} fcIdx=0; showCard(); };
+$("#fcSkipDone").onchange=e=>{ fcSkip=e.target.checked; renderCard(); };
+
+/* ===== QUIZ ===== */
+let qzCur=null, qzPool=[];
+function newQuiz(){
+  qzPool=filtered();
+  if(!qzPool.length){
+    $("#qzMeta").innerHTML=""; $("#qzQ").innerHTML="<span style='color:#9aa49d'>해당 조건의 문항이 없습니다.</span>";
+    $("#qzA").className="quiz-a"; $("#qzReveal").style.display="none"; $("#qzGrade").style.display="none"; return;
+  }
+  $("#qzReveal").style.display="block";
+  qzCur=qzPool[(Math.random()*qzPool.length)|0];
+  const c=CAT[qzCur.cat];
+  $("#qzCard").style.setProperty("--cc",c.color);
+  $("#qzMeta").innerHTML=`<span class="tag" style="background:${c.color}">${c.name}</span><span class="years">${qzCur.years}</span><span class="fc-side">#${qzCur.id}</span>`;
+  $("#qzQ").textContent=qzCur.q;
+  const a=$("#qzA"); a.innerHTML=`<span class="fc-anum">모범답안</span>\n\n${esc(qzCur.a)}`; a.className="quiz-a";
+  $("#qzReveal").style.display="block"; $("#qzGrade").style.display="none";
+}
+function renderQuizStats(){
+  $("#qzTotal").textContent=memory.quiz.t;
+  $("#qzOk").textContent=memory.quiz.ok;
+  $("#qzNo").textContent=memory.quiz.no;
+  $("#qzAcc").textContent=memory.quiz.t?Math.round(memory.quiz.ok/memory.quiz.t*100)+"%":"—";
+}
+$("#qzReveal").onclick=()=>{ $("#qzA").classList.add("show"); $("#qzReveal").style.display="none"; $("#qzGrade").style.display="flex"; };
+$("#qzRight").onclick=()=>grade(true);
+$("#qzWrong").onclick=()=>grade(false);
+function grade(ok){
+  memory.quiz.t++; if(ok){memory.quiz.ok++; if(qzCur)toggleAddDone(qzCur.id);} else memory.quiz.no++;
+  save(); renderQuizStats(); newQuiz();
+}
+function toggleAddDone(id){ if(!memory.done.has(id)){memory.done.add(id); save(); updateRing();} }
+$("#qzReset").onclick=()=>{ if(confirm("시험 기록(맞음/틀림)을 초기화할까요? 암기 진도는 유지됩니다.")){ memory.quiz={t:0,ok:0,no:0}; save(); renderQuizStats(); } };
+
+/* ===== empty ===== */
+function emptyHTML(){return `<div class="empty"><div class="big">🔍</div><p>조건에 맞는 문항이 없습니다.<br>검색어나 분류 필터를 바꿔보세요.</p></div>`;}
+
+/* ===== mode switch ===== */
+function setMode(m){
+  mode=m;
+  $$("#modes button").forEach(b=>b.classList.toggle("on",b.dataset.mode===m));
+  $("#view-list").style.display=m==="list"?"block":"none";
+  $("#view-card").style.display=m==="card"?"block":"none";
+  $("#view-quiz").style.display=m==="quiz"?"block":"none";
+  render();
+}
+$$("#modes button").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+
+/* ===== list toolbar ===== */
+$("#hideDone").onclick=function(){ hideDone=!hideDone; this.classList.toggle("act",hideDone); this.textContent=hideDone?"전체 보기":"암기 숨기기"; renderList(); };
+$("#expandAll").onclick=function(){ allExpanded=!allExpanded; this.classList.toggle("act",allExpanded); this.textContent=allExpanded?"모두 접기":"모두 펼치기"; renderList(); };
+
+/* ===== search ===== */
+const sIn=$("#search");
+sIn.addEventListener("input",()=>{ search=sIn.value; $("#searchWrap").classList.toggle("has-val",!!search); render(); });
+$("#searchClr").onclick=()=>{ sIn.value=""; search=""; $("#searchWrap").classList.remove("has-val"); sIn.focus(); render(); };
+
+/* ===== keyboard for flashcard ===== */
+document.addEventListener("keydown",e=>{
+  if(mode!=="card") return;
+  if(document.activeElement===sIn) return;
+  if(e.key==="ArrowLeft") $("#fcPrev").click();
+  else if(e.key==="ArrowRight") $("#fcNext").click();
+  else if(e.key===" "||e.key==="Enter"){ e.preventDefault(); $("#fcCard").click(); }
+});
+
+/* ===== master render ===== */
+function render(){
+  if(mode==="list") renderList();
+  else if(mode==="card") renderCard();
+  else { renderQuizStats(); newQuiz(); }
+}
+
+/* ===== init ===== */
+buildChips(); updateRing(); setMode("list");
+</script>
+</body>
+</html>
